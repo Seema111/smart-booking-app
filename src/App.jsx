@@ -19,15 +19,15 @@ import AppointmentPage from "./containers/AppointmentPage";
 import CaregivingDetail from "./containers/CaregivingPage/CaregivingDetail";
 import ProfilePage from "./containers/ProfilePage";
 import AppointmentDetailPage from "./containers/AppointmentDetail";
-import ChatroomPage from "./containers/Chatroom";
 import ForgotPasswordPage from "./containers/ForgotPassword";
 
 /**
- * @description Generates HTML markup for a web application, using React Routes and
- * other components to define different pages and their respective elements.
+ * @description Returns an HTML structure consisting of a toast container, Routes
+ * component with different routes, and either a header or footer component based on
+ * specific conditions.
  * 
- * @returns { Component } a HTML structure consisting of a container, ToastContainer,
- * and several Routes for rendering different pages.
+ * @returns { Component } a JSX component that renders a responsive layout of
+ * navigational elements and a Footer.
  */
 const App = () => {
   const location = useLocation();
@@ -67,7 +67,6 @@ const App = () => {
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-          <Route path="/chat" element={<ChatroomPage />} />
           <Route path="/help" element={<HelpPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
