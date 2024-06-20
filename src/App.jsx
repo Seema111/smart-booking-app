@@ -19,7 +19,6 @@ import AppointmentPage from "./containers/AppointmentPage";
 import CaregivingDetail from "./containers/CaregivingPage/CaregivingDetail";
 import ProfilePage from "./containers/ProfilePage";
 import AppointmentDetailPage from "./containers/AppointmentDetail";
-import ChatroomPage from "./containers/Chatroom";
 import ForgotPasswordPage from "./containers/ForgotPassword";
 
 const App = () => {
@@ -60,7 +59,6 @@ const App = () => {
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-          <Route path="/chat" element={<ChatroomPage />} />
           <Route path="/help" element={<HelpPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
