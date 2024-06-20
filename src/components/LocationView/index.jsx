@@ -67,6 +67,7 @@ const customMarkerIcon = new L.Icon({
  * 	* `<Popup>`: This element is a popup that displays the location name when the
  * marker is clicked. Its content is set to `"Kathmandu, Nepal"`.
  */
+
 const LocationView = ({ children }) => {
   // Coordinates for Kathmandu, Nepal
   const kathmanduPosition = [27.7172, 85.324];

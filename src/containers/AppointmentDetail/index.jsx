@@ -196,6 +196,7 @@ const APPOINTMENT_DETAIL = [
  * 	* `<a ... />`: This element is an HTML anchor tag that displays a button with
  * text. The `a` element is used to display a booking appointment button.
  */
+
 const AppointmentDetailPage = () => {
   const isUserLoggedIn = getCookie("token");
   const navigate = useNavigate();
@@ -242,6 +243,7 @@ const AppointmentDetailPage = () => {
     "Nov",
     "Dec",
   ];
+
   /**
    * @description Takes a string in the format of `MM/DD/YYYY`, and returns the date
    * in the format `DD MM YYYY`.
@@ -252,6 +254,7 @@ const AppointmentDetailPage = () => {
    * @returns { string } a string representation of the date in the format `day month
    * year`.
    */
+
   const convertDate = (newDate) => {
     const dateObject = new Date(newDate);
     // Get year, month, day, hour, minute, and AM/PM separately
@@ -261,6 +264,7 @@ const AppointmentDetailPage = () => {
     const formattedDateTime = `${day} ${month} ${year}`;
     return formattedDateTime;
   };
+
 
   /**
    * @description Takes a date object as input and returns its hour, minute, and AM/PM
@@ -272,6 +276,7 @@ const AppointmentDetailPage = () => {
    * @returns { string } a string representing the current time in a 12-hour format,
    * with the hour and minute padded with leading zeros if necessary.
    */
+
   const getTime = (newDate) => {
     const dateObject = new Date(newDate);
     let hour = dateObject.getHours();
@@ -286,14 +291,14 @@ const AppointmentDetailPage = () => {
     <div className="row d-flex mt-5 justify-content-center align-items-center">
       <div className="col-8 p-5 m-5">
         <h2 className="mb-3">MY APPOINTMENT'S SCHEDULE</h2>
-        {/**
+        /**
          * @description Generates a list of appointment cards based on given appointments,
          * each card containing information such as date, service type, scheduled time,
          * caregiver name and specialty, as well as a badge indicating whether the payment
          * is successful or pending.
          * 
          * @param { string } className - CSS class name to apply to the `Card` component.
-         */}
+         */
         {allAppointments.length > 0 ? (
           <div className="appointment-card-container">
             {(allAppointments || APPOINTMENT_DETAIL).map((eachAppointment) => (

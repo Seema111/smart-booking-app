@@ -5,6 +5,7 @@ import { getCookie } from "../utils/setCookie";
 const apiUrl = process.env.REACT_APP_BASE_URL;
 const loggedInToken = getCookie("token");
 
+
 /**
  * @description Async makes a POST request to `${apiUrl}/account/login/` with the
  * provided `body` as the request body, using JSON serialization.
@@ -14,6 +15,7 @@ const loggedInToken = getCookie("token");
  * 
  * @returns { Promise } a JSON response containing the login result.
  */
+
 export const loginUser = async (body) => {
   return await fetch(`${apiUrl}/account/login/`, {
     method: "POST",
@@ -25,6 +27,7 @@ export const loginUser = async (body) => {
   });
 };
 
+
 /**
  * @description Synchronously makes a POST request to the `${apiUrl}/account/register/`
  * endpoint with the given body data as the request body, using `JSON.stringify()`
@@ -35,6 +38,7 @@ export const loginUser = async (body) => {
  * 
  * @returns { object } a HTTP POST request to the `/account/register/` endpoint.
  */
+
 export const registerUser = async (body) => {
   return await fetch(`${apiUrl}/account/register/`, {
     method: "POST",
@@ -45,6 +49,7 @@ export const registerUser = async (body) => {
     body: JSON.stringify(body),
   });
 };
+
 
 /**
  * @description Synchronously generates an OTP and returns it as a JSON response to
@@ -59,6 +64,7 @@ export const registerUser = async (body) => {
  * contains an OTP generation link that will reset the user's password. (Type: JSON
  * object)
  */
+
 export const forgotPasswordEmail = async (body) => {
   return await fetch(`${apiUrl}/account/forget-password/generate/otp/`, {
     method: "POST",
@@ -69,6 +75,7 @@ export const forgotPasswordEmail = async (body) => {
     body: JSON.stringify(body),
   });
 };
+
 
 /**
  * @description Makes a POST request to the `/account/forget-password/reset/` API
@@ -85,6 +92,7 @@ export const forgotPasswordEmail = async (body) => {
  * 	* `status`: The HTTP status code of the response, indicating whether the request
  * was successful or not (e.g., 200 for a successful response).
  */
+
 export const forgotPasswordReset = async (body) => {
   return await fetch(`${apiUrl}/account/forget-password/reset/`, {
     method: "POST",
@@ -95,6 +103,7 @@ export const forgotPasswordReset = async (body) => {
     body: JSON.stringify(body),
   });
 };
+
 
 /**
  * @description Fetches user details from the API using a GET request with specified
@@ -115,6 +124,7 @@ export const forgotPasswordReset = async (body) => {
  * 	* `config`: The configuration object used to make the API call is stored in the
  * `config` property. This can be useful for debugging purposes or when handling errors.
  */
+
 export const getUserDetail = async (username) => {
   return await fetch(`${apiUrl}/account/user/${username ?? "admin1"}/`, {
     method: "GET",
@@ -139,6 +149,7 @@ export const getUserDetail = async (username) => {
  * 
  * @returns { object } a response from the API endpoint with the updated user details.
  */
+
 export const updateUserDetail = async ({ username, body }) => {
   return await fetch(`${apiUrl}/account/user/${username ?? "admin1"}/`, {
     method: "PATCH",
@@ -158,6 +169,7 @@ export const updateUserDetail = async ({ username, body }) => {
  * 
  * @returns { array } a JSON response containing a list of lab services.
  */
+
 export const getAllLabServices = async () => {
   return await fetch(`${apiUrl}/core/lab-services/`, {
     method: "GET",
@@ -175,6 +187,7 @@ export const getAllLabServices = async () => {
  * 
  * @returns { object } a JSON response containing a list of caregivers.
  */
+
 export const getAllCareGivers = async () => {
   return await fetch(`${apiUrl}/core/care-giver/`, {
     method: "GET",
@@ -186,6 +199,7 @@ export const getAllCareGivers = async () => {
   });
 };
 
+
 /**
  * @description Synchronously calls the API `/core/care-giver/$uuidOrEmpty/`.
  * 
@@ -194,6 +208,7 @@ export const getAllCareGivers = async () => {
  * 
  * @returns { object } a JSON response containing caregiver detail information.
  */
+
 export const getCaregiverDetail = async (uuid) => {
   return await fetch(`${apiUrl}/core/care-giver/${uuid || ""}/`, {
     method: "GET",
@@ -205,6 +220,7 @@ export const getCaregiverDetail = async (uuid) => {
   });
 };
 
+
 /**
  * @description Async sends a POST request to the API endpoint `/core/book-appointment/`
  * with the body containing appointment details, using the `loggedInToken` for authentication.
@@ -215,6 +231,7 @@ export const getCaregiverDetail = async (uuid) => {
  * @returns { Promise } a HTTP POST request to the API endpoint with the provided
  * body data.
  */
+
 export const bookAppointment = async (body) => {
   return await fetch(`${apiUrl}/core/book-appointment/`, {
     method: "POST",
@@ -227,6 +244,7 @@ export const bookAppointment = async (body) => {
     body: JSON.stringify(body),
   });
 };
+
 
 /**
  * @description Makes a POST request to the `/core/appointment/transaction/` API
@@ -247,6 +265,7 @@ export const bookAppointment = async (body) => {
  * 	* `requestId`: A unique identifier for the payment initiation request.
  * 	* `transactionId`: A unique identifier for the transaction.
  */
+
 export const initiateKhaltiPayment = async (body) => {
   return await fetch(`${apiUrl}/core/appointment/transaction/initiate/`, {
     method: "POST",
@@ -259,6 +278,7 @@ export const initiateKhaltiPayment = async (body) => {
     body: JSON.stringify(body),
   });
 };
+
 
 /**
  * @description Via API endpoint POST requests, using JSON-formatted request bodies
@@ -283,6 +303,7 @@ export const initiateKhaltiPayment = async (body) => {
  * 	* `created_at`: The date and time when the transaction was made.
  * 	* `updated_at`: The date and time when the transaction was last processed or updated.
  */
+
 export const verifyKhaltiPayment = async (body) => {
   return await fetch(`${apiUrl}/core/appointment/transaction/verify/`, {
     method: "POST",
@@ -296,11 +317,13 @@ export const verifyKhaltiPayment = async (body) => {
   });
 };
 
+
 /**
  * @description Asyncly fetches the user's appointments from the API endpoint `${apiUrl}/core/uer-appointments/`.
  * 
  * @returns { object } a JSON object representing all the user's appointments.
  */
+
 export const getAllMyAppointments = async () => {
   return await fetch(`${apiUrl}/core/uer-appointments/`, {
     method: "GET",
@@ -313,12 +336,14 @@ export const getAllMyAppointments = async () => {
   });
 };
 
+
 /**
  * @description Via `fetch()` API request retrieves all chat users' data from a server
  * endpoint.
  * 
  * @returns { object } a JSON object containing a list of chat users.
  */
+
 export const getAllChatUsers = async () => {
   return await fetch(`${apiUrl}/chat/users/`, {
     method: "GET",
@@ -331,12 +356,14 @@ export const getAllChatUsers = async () => {
   });
 };
 
+
 /**
  * @description Via an `async` method fetches data from the API endpoint
  * `${apiUrl}/chat/user/rooms/` and returns it as a promise.
  * 
  * @returns { object } a JSON response containing an array of chat rooms.
  */
+
 export const getAllChatRooms = async () => {
   return await fetch(`${apiUrl}/chat/user/rooms/`, {
     method: "GET",
@@ -348,6 +375,7 @@ export const getAllChatRooms = async () => {
     },
   });
 };
+
 
 /**
  * @description Async calls the GET method on the API endpoint `/chat/room/$uuid/get-message/`
@@ -373,6 +401,7 @@ export const getAllChatRooms = async () => {
  * 	* `error`: This property contains an error message if any, indicating a problem
  * with the API call.
  */
+
 export const getAllChatRoomMessages = async (uuid) => {
   return await fetch(`${apiUrl}/chat/room/${uuid}/get-message/`, {
     method: "GET",

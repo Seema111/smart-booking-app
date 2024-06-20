@@ -1,0 +1,21 @@
+.appointment-card {
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+}
+
+.form-check {
+  padding: 1rem 2rem;
+  cursor: pointer;
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+
+  &.active {
+    background-color: #f0f8ff;
+  }
+
+  &:hover {
+    background-color: #f0f8ff;
+  }
+}

@@ -17,6 +17,7 @@ const INITIAL_VALUE = {
   address: "",
 };
 
+
 /**
  * @description Generates high-quality documentation for code given to it, by providing
  * a functional React component that allows users to update their personal information
@@ -24,6 +25,7 @@ const INITIAL_VALUE = {
  * 
  * @returns { any } a form to update a user's profile information.
  */
+
 const ProfilePage = () => {
   const isUserLoggedIn = getCookie("token");
   const username = getCookie("username");
@@ -43,9 +45,11 @@ const ProfilePage = () => {
    * @param { object } event - current event object passed to the function, providing
    * the current value of the form element being updated.
    */
+
   const handleOnChange = (event) => {
     setFormValue({ ...formValue, [event.target.name]: event.target.value });
   };
+
 
   /**
    * @description Prevents the form submission, makes an HTTP Patch request to update
@@ -73,6 +77,7 @@ const ProfilePage = () => {
    * displays a successful update message using the `toast` method. Otherwise, it
    * displays the error message in JSON format using the `toast` method.
    */
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {

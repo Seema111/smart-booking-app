@@ -1,5 +1,6 @@
 import HelpUsImage from "../../assets/images/help2.jpg";
 
+
 /**
  * @description Creates an Accordion component with seven panel sections, each
  * containing a heading and an accompanying description. It returns a JSX element
@@ -35,6 +36,7 @@ import HelpUsImage from "../../assets/images/help2.jpg";
  * The component consists of multiple headers with content displayed under each header
  * when expanded, and collapsed state controlled by buttons next to each header.
  */
+
 const HelpPage = () => {
   return (
     <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center justify-content-center">

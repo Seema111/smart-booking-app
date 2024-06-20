@@ -59,6 +59,7 @@ import "./style.css";
  * 	* `btn-lg`: An enumeration property that specifies whether the button should be
  * large or not.
  */
+
 function CustomModal({ title, imgSrc, message, showModal, handleClose }) {
   const navigate = useNavigate();
   return (
@@ -77,7 +78,7 @@ function CustomModal({ title, imgSrc, message, showModal, handleClose }) {
         <h2 className="mt-3">{title}</h2>
         <Image src={imgSrc} rounded height={300} />
         <h5 className="px-5">{message}</h5>
-        {/**
+        /**
          * @description Navigates to `/my-appointments`.
          * 
          * @param { string } variant - 3D button variant, which determines the appearance and
@@ -92,7 +93,7 @@ function CustomModal({ title, imgSrc, message, showModal, handleClose }) {
          * represents a margin of 3 units (default unit is `em`).
          * 	* `btn-lg`: This property sets the size of the button to large (`lg`). This means
          * that the button will have more vertical space than a small or medium-sized button.
-         */}
+         */
         <Button
           variant="success mt-3 btn-lg"
           onClick={() => navigate("/my-appointments")}

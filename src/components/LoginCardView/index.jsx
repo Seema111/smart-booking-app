@@ -36,6 +36,7 @@ import "./style.scss";
  * @returns { Component } a layout for a login page with a background image and a
  * form for entering login credentials.
  */
+
 const LoginCardView = ({ title, subTitle, children }) => {
   return (
     <div className="row login-container gx-5">

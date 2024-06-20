@@ -12,6 +12,7 @@ const INITIAL_VALUE = {
   password: "",
 };
 
+
 /**
  * @description Is a React component that renders a login form and handles user input,
  * submission, and authentication through the `loginUser` API endpoint. It also stores
@@ -19,6 +20,7 @@ const INITIAL_VALUE = {
  * 
  * @returns { object } a HTML page with a login form.
  */
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [formValue, setFormValue] = useState(INITIAL_VALUE);
@@ -37,6 +39,7 @@ const LoginPage = () => {
    * @param { object } event - Event Object that triggered the function, providing the
    * current value of the form field being processed.
    */
+
   const handleOnChange = (event) => {
     setFormValue({ ...formValue, [event.target.name]: event.target.value });
   };
@@ -66,6 +69,7 @@ const LoginPage = () => {
    * @returns { object } a JSON object containing a token and username, or an error
    * message if there is an issue with the login process.
    */
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {

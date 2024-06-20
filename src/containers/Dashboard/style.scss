@@ -1,0 +1,43 @@
+.dashboard-container {
+  padding: 10rem 3.5rem 2.5rem 3.5rem;
+
+  &__introduction {
+    font-family: "Cormorant Garamond", sans-serif;
+    padding: 0 8.8%;
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    h1,
+    h2 {
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 20px;
+      text-align: justify;
+    }
+
+    .btn-lg {
+      width: 50%;
+      font-size: 20px;
+    }
+
+    &__already_account_text {
+      font-size: 20px;
+    }
+  }
+}
+
+.custom-image {
+  height: 56px;
+}
+
+.dashboard-testimonial {
+  padding: 2rem;
+}

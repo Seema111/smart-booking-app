@@ -8,6 +8,7 @@ import { caregivingData } from "../../utils/dummyData";
 import LoaderSpinner from "../../components/Loader";
 import { validateResponse } from "../../utils/validateResponse";
 
+
 /**
  * @description Generates high-quality documentation for code given to it, using the
  * information provided in the dependencies and localStorage. It retrieves data from
@@ -51,6 +52,7 @@ import { validateResponse } from "../../utils/validateResponse";
  * details.
  * 	* `</div>` : This is the closing tag of the div element.
  */
+
 const CaregivingPage = () => {
   const navigate = useNavigate();
   const [caregivers, setCaregivers] = useState({
@@ -93,10 +95,12 @@ const CaregivingPage = () => {
    * function stops the propagation of the event and navigates to the appropriate booking
    * page based on the uuid value.
    */
+
   const redirectToBookAppointment = (event, uuid) => {
     event.stopPropagation();
     navigate(`/caregiving/${uuid}/book-appointment`);
   };
+
 
   /**
    * @description Redirects to the Caregiving page with a specific UUID appended to the
@@ -110,6 +114,7 @@ const CaregivingPage = () => {
    * `navigate` method. This property contains a unique identifier for each caregiver
    * profile in the application's database.
    */
+
   const getMoreDetails = (uuid) => {
     navigate(`/caregiving/${uuid}`);
   };
@@ -133,14 +138,14 @@ const CaregivingPage = () => {
         </div>
       </div>
       <div className="container overflow-hidden">
-        {/**
+        /**
          * @description Displays information about a caregiver, including their profile
          * picture, ratings, bio, and specialty. A "Book Appointment" button is also provided
          * for booking an appointment with the caregiver.
          * 
          * @param { string } className - class name for each card element, allowing the
          * developer to apply custom CSS styles to the elements.
-         */}
+         */
         <div className="row gy-4 gy-md-0 gx-xxl-5 mb-5">
           {caregivers.data.map((each) => (
             <div className="col-12 col-md-4" key={each.uuid}>
@@ -184,7 +189,8 @@ const CaregivingPage = () => {
                       </h5>
                     </figcaption>
                     <div className="col-12 text-center">
-                      {/**
+
+                      /**
                        * @description Is set up to redirect the user to a booking appointment page upon
                        * click, storing the appointment details in local storage using `JSON.stringify()`.
                        * 
@@ -208,7 +214,8 @@ const CaregivingPage = () => {
                        * 
                        * 	Note: The `localStorage.setItem` function is used to store the "book-detail" item
                        * in local storage with the value of the deserialized `each` object.
-                       */}
+                       */
+
                       <button
                         type="button"
                         className="btn btn-lg btn-success mt-3 w-100"
@@ -223,7 +230,8 @@ const CaregivingPage = () => {
                         <i className="bi bi-person-plus pr-5"></i>
                         Book Appointment
                       </button>
-                      {/**
+
+                      /**
                        * @description Is intended to provide additional information about a specific code
                        * component by invoking the `getMoreDetails()` function with each unique `uuid`.
                        * 
@@ -243,7 +251,8 @@ const CaregivingPage = () => {
                        * 	* `onClick`: This property specifies the event handler that will be called when
                        * the button is clicked. The function reference `getMoreDetails(each.uuid)` is passed
                        * as the value of `onClick`.
-                       */}
+                       */
+
                       <button
                         type="button"
                         className="btn btn-lg btn btn-outline-info mt-3"

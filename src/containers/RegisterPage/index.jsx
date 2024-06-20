@@ -19,6 +19,7 @@ const INITIAL_VALUE = {
   address: "",
 };
 
+
 /**
  * @description Generates high-quality documentation for code provided and returns a
  * React component for the register page, which includes a form for entering user
@@ -26,9 +27,11 @@ const INITIAL_VALUE = {
  * 
  * @returns { string } a React component for user registration.
  */
+
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [formValue, setFormValue] = useState(INITIAL_VALUE);
+
 
   /**
    * @description Updates the `formValue` object by setting the value of each form field
@@ -36,9 +39,11 @@ const RegisterPage = () => {
    * 
    * @param { object } event - current form value being edited by the user.
    */
+
   const handleOnChange = (event) => {
     setFormValue({ ...formValue, [event.target.name]: event.target.value });
   };
+
 
   /**
    * @description Preventdefault, try and catch block ensure the form data is submitted
@@ -70,6 +75,7 @@ const RegisterPage = () => {
    * @returns { array } a successful registration of a new user, accompanied by a toast
    * notification with a success message or an error message if any.
    */
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {

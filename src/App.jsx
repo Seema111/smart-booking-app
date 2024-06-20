@@ -29,6 +29,7 @@ import ForgotPasswordPage from "./containers/ForgotPassword";
  * @returns { Component } a JSX component that renders a responsive layout of
  * navigational elements and a Footer.
  */
+
 const App = () => {
   const location = useLocation();
   const { pathname } = location;

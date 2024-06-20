@@ -12,6 +12,7 @@ import { getCookie } from "../../utils/setCookie";
  * @returns { string } a React component that displays a dashboard for a home care
  * service provider, containing various components and testimonials.
  */
+
 const Dashboard = () => {
   const storedToken = getCookie("token");
 

@@ -1,4 +1,5 @@
 // Helper function to set cookie
+
 /**
  * @description Sets a cookie with a specified name, value, and expiration date in
  * milliseconds from the current time.
@@ -12,6 +13,7 @@
  * @param { integer } days - number of days to add to the current date before setting
  * the expiration time for a cookie.
  */
+
 export const setCookie = (name, value, days) => {
   const date = new Date();
   date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
@@ -19,7 +21,7 @@ export const setCookie = (name, value, days) => {
   document.cookie = `${name}=${value}; ${expires}; path=/`;
 };
 
-// Helper function to delete cookie
+
 /**
  * @description Sets a cookie named `name` to an empty value, indicating it has been
  * deleted, using the `document.cookie` property. The cookie will expire on January
@@ -28,12 +30,12 @@ export const setCookie = (name, value, days) => {
  * @param { string } name - name of the cookie to be set, which is then assigned to
  * the `cookie` property using the `=` operator.
  */
+
 export const deleteCookie = (name) => {
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 };
 
 
-// Helper function to get cookie by name
 /**
  * @description Takes a `name` parameter and returns the value of a cookie with the
  * specified name, or an empty string if no such cookie exists.
@@ -45,6 +47,7 @@ export const deleteCookie = (name) => {
  * @returns { string } the value of a cookie with the specified name, or an empty
  * string if no such cookie exists.
  */
+
 export const getCookie = (name) => {
   const cookies = document.cookie.split('; ');
   for (let cookie of cookies) {

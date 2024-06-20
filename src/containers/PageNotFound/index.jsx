@@ -1,6 +1,7 @@
 import PageNotFoundImg from "../../assets/images/pagenotfound.jpg";
 import "./style.scss";
 
+
 /**
  * @description Generates a HTML div element with a centered "Oops, Page not found"
  * message and an arrow icon linked to the homepage.
@@ -23,6 +24,7 @@ import "./style.scss";
  * attribute set to `/` and a `className` attribute set to `"btn btn-success"`. The
  * `span` element within the `a` tag has a class name of `"arrow"`。
  */
+
 const PageNotFound = () => {
   return (
     <div

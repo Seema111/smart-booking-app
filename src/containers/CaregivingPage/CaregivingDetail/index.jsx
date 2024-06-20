@@ -6,6 +6,7 @@ import { getCaregiverDetail } from "../../../services/http-request";
 import "../style.scss";
 import { validateResponse } from "../../../utils/validateResponse";
 
+
 /**
  * @description Retrieves caregiver detail information using the provided caregiver
  * ID, then displays it in a card with bio and appointment booking button.
@@ -13,6 +14,7 @@ import { validateResponse } from "../../../utils/validateResponse";
  * @returns { object } a component that displays caregiver detail information and
  * provides a button to book an appointment.
  */
+
 const CaregivingDetail = () => {
   const params = useParams();
   const navigate = useNavigate();
@@ -47,6 +49,7 @@ const CaregivingDetail = () => {
    * @param { object } event - Event Object passed through as an argument and stops its
    * default behavior of propagating further.
    */
+
   const redirectToBookAppointment = (event) => {
     event.stopPropagation();
     navigate(`/caregiving/book-appointment`);

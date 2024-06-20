@@ -1,0 +1,35 @@
+.login-container {
+    height: 100vh;
+  
+    .card-title {
+      color: blue;
+    }
+  
+    .row {
+      overflow: auto;
+    }
+  
+    &__main-col {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    &__login-form {
+      height: 95vh;
+      width: 70%;
+      border-radius: 50px;
+      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+  
+    &__bg-image {
+      height: 88vh;
+    }
+  
+    &__form {
+      padding: 10px;
+    }
+  }
+  

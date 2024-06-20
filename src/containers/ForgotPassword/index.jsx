@@ -20,6 +20,7 @@ const INITIAL_RESET_PASSWORD = {
   confirm_password: "",
 };
 
+
 /**
  * @description Generates high-quality documentation for code given to it and:
  * 
@@ -55,6 +56,7 @@ const INITIAL_RESET_PASSWORD = {
  * variables, functions, and references defined in it, which are used to handle user
  * input and navigate between pages in the application.
  */
+
 const ForgotPasswordPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState({
@@ -65,6 +67,7 @@ const ForgotPasswordPage = () => {
   const [resetFormValue, setResetForm] = useState(INITIAL_RESET_PASSWORD);
   const [sentOTP, setOTPSent] = useState(false);
 
+
   /**
    * @description Sets form values by setting a value to a part of the larger `formValue`.
    * 
@@ -72,9 +75,11 @@ const ForgotPasswordPage = () => {
    * access to the Event's target property, which contains the current form element
    * being focused or changed.
    */
+
   const handleOnChange = (event) => {
     setFormValue({ ...formValue, [event.target.name]: event.target.value });
   };
+
 
   /**
    * @description Updates the `resetForm` object by adding the value of the currently
@@ -84,12 +89,14 @@ const ForgotPasswordPage = () => {
    * @param { object } event - event that triggered the function and provides the
    * relevant data, such as the form name and value, to update the `resetForm` state.
    */
+
   const handleOnChangeReset = (event) => {
     setResetForm({
       ...resetFormValue,
       [event.target.name]: event.target.value,
     });
   };
+
 
   /**
    * @description Sends a password reset email when the form is submitted and validates
@@ -153,6 +160,7 @@ const ForgotPasswordPage = () => {
    * submission of an email form by validating the input, sending an OTP, and displaying
    * the response message or error to the user.
    */
+
   const onSubmitEmailHandler = async (e) => {
     e.preventDefault();
     setLoading({ ...loading, otpSent: true });
@@ -177,6 +185,7 @@ const ForgotPasswordPage = () => {
       toast.error(JSON.stringify(error));
     }
   };
+
 
   /**
    * @description Prevents the default form submission behavior, sets a state variable
@@ -206,6 +215,7 @@ const ForgotPasswordPage = () => {
    * @returns { object } a JSON response indicating whether the password reset was
    * successful or not.
    */
+
   const onSubmitChangePasswordHandler = async (e) => {
     e.preventDefault();
     setLoading({ ...loading, resetPassword: true });

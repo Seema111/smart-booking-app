@@ -69,6 +69,7 @@ const SERVICE_TYPES = [
  * that allows users to book an appointment for caregiving services. It retrieves
  * appointment details and provides payment medium options to the user for selection.
  */
+
 const AppointmentPage = ({ page }) => {
   const params = useParams();
   const token = getCookie("token");
@@ -112,6 +113,7 @@ const AppointmentPage = ({ page }) => {
    * @returns { object } a configured `KhaltiCheckout` instance that initiates verification
    * of a payment request.
    */
+
   const intializKhaltiWeb = (data) => {
     const { product_id, product_name, product_url, transaction_uuid } = data;
     let config = {
@@ -205,6 +207,7 @@ const AppointmentPage = ({ page }) => {
    * @returns { array } a JSON object containing the booking details or an error message
    * if there is any.
    */
+  
   const onSubmitHandler = (e) => {
     e.preventDefault();
     try {
@@ -229,6 +232,7 @@ const AppointmentPage = ({ page }) => {
       toast.error(JSON.stringify(error));
     }
   };
+
   /**
    * @description Updates appointment detail's properties with event-related changes.
    * It checks if the service is "labservices" and the input name is "start_date", then
@@ -238,6 +242,7 @@ const AppointmentPage = ({ page }) => {
    * and is used to update the `appointmentDetail` object with the corresponding field
    * value.
    */
+  
   const handleOnChange = (event) => {
     const formInput = event.target.value;
     let defaultValue = {
@@ -273,6 +278,7 @@ const AppointmentPage = ({ page }) => {
     }
   }, []);
 
+
   /**
    * @description Takes a `defaultAppointment` object and returns a pre-defined message
    * for the user based on their appointment details, with the service type taken into
@@ -281,6 +287,7 @@ const AppointmentPage = ({ page }) => {
    * @returns { string } a personalized message for an appointment, containing the
    * user's name and specialty or service type.
    */
+
   const getMessageForServiceType = () => {
     let defaultMessage = `${defaultAppointment?.detail?.user?.first_name}
     ${defaultAppointment?.detail?.user?.last_name}
@@ -294,7 +301,8 @@ const AppointmentPage = ({ page }) => {
   return (
     <LocationView>
       <LoaderSpinner loading={paymentLoading} />
-      {/**
+
+      /**
        * @description Displays a message confirming the successful booking of an appointment
        * and providing the booked service details and appointment date.
        * 
@@ -325,7 +333,8 @@ const AppointmentPage = ({ page }) => {
        * or not. It is passed as an event handler to the `handleClose` function.
        * 	* `handleClose`: This is a function that is called when the user closes the modal.
        * It updates the `bookingSuccess` state variable to `false`.
-       */}
+       */
+
       <CustomModal
         title="Appointment Booked Successfully!"
         imgSrc={BookingLogo}
@@ -390,7 +399,8 @@ const AppointmentPage = ({ page }) => {
             </div>
             <div className="mb-3">
               <label className="form-label">Services Type</label>
-              {/**
+
+              /**
                * @description Is used to render a dropdown menu with options representing different
                * services that can be booked through an appointment system, and provide information
                * on each service type upon selection.
@@ -417,7 +427,8 @@ const AppointmentPage = ({ page }) => {
                * 
                * @param { string } placeholder - default value of the select element, displayed
                * when no selection is made by the user.
-               */}
+               */
+
               <select
                 className="form-select form-select-lg"
                 name="description"
@@ -469,7 +480,8 @@ const AppointmentPage = ({ page }) => {
             </div>
             <label className="form-label">Select Payment Method: </label>
             <div className="mb-3 d-flex">
-              {/**
+
+              /**
                * @description Adds an image of the Khaliti logo and a span label when clicked will
                * update appointment detail by setting payment_medium to khalti
                * 
@@ -490,7 +502,8 @@ const AppointmentPage = ({ page }) => {
                * 	* `onClick`: Defines the function executed when the element is clicked. In this
                * case, it updates the `appointmentDetail` object by changing the `payment_medium`
                * property to `KHALTI`.
-               */}
+               */
+               
               <div
                 className={`form-check ml-5 ${appointmentDetail.payment_medium === KHALTI && "active"}`}
                 role="presentation"
@@ -505,7 +518,8 @@ const AppointmentPage = ({ page }) => {
 
                 <span className="ml-5">Pay with Khalti</span>
               </div>
-              {/**
+
+              /**
                * @description Allows users to switch between payment methods, including cash, by
                * clicking on the associated logo or text label. When the cash option is selected,
                * the `payment_medium` property in the `appointmentDetail` object is set to "Cash".
@@ -529,7 +543,8 @@ const AppointmentPage = ({ page }) => {
                * 	`onClick`: This event is triggered when the user clicks on the button. When called,
                * it updates the `appointmentDetail` object with a new payment medium value of "Cash".
                * The `setAppointmentDetail()` function is used for this purpose.
-               */}
+               */
+
               <div
                 className={`form-check ml-5 ${appointmentDetail.payment_medium === "Cash" && "active"}`}
                 role="presentation"

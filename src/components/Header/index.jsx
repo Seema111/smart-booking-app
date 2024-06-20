@@ -53,6 +53,7 @@ import { toast } from "react-toastify";
  * that contains a logo image, a user name hyperlink, and a button to open a dropdown
  * menu containing additional hyperlinks.
  */
+
 const Header = () => {
   const navigate = useNavigate();
   const isUserLoggedIn = getCookie("token");

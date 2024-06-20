@@ -6,6 +6,7 @@ import HomeCareLogo from "../../assets/images/logo.png";
  * 
  * @returns { string } an SVG footer element with a circular logo and navigation links.
  */
+
 const Footer = () => {
   return (
     <div className="row" style={{ background: "darkblue" }}>

@@ -36,6 +36,7 @@ import "./style.scss";
  * 	8/ `<div>`: This is an HTML element for a division, used to wrap around the SVG
  * elements inside the previous components.
  */
+
 const AboutUsPage = () => {
   return (
     <div className="row">

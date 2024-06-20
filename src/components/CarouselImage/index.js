@@ -37,6 +37,7 @@ import HomeCareDashbaordImg2 from "../../assets/images/old_care.jpg";
  * 	Overall, the `CarouselImage` function returns a well-structured carousel component
  * with the necessary elements for navigating between slides using carousel indicators.
  */
+
 const CarouselImage = () => {
     return <div id="carouselExampleCaptions" className="carousel slide">
         <div className="carousel-indicators">

@@ -8,6 +8,7 @@ import { deleteCookie } from "./setCookie";
  * @param { object } response - network response from the server, which the function
  * checks for errors and handles accordingly.
  */
+
 export const validateResponse = (response) => {
   if (!response.ok) {
     if (response.status === 401 || response.status === 403) {
