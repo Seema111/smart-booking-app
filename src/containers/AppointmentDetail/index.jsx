@@ -171,6 +171,32 @@ const APPOINTMENT_DETAIL = [
   },
 ];
 
+/**
+ * @description Generates high-quality documentation for code given to it. It retrieves
+ * user's logged status and all appointments, validates the response, and logs any errors.
+ * 
+ * @returns { HTML division element } a grid of appointment cards displaying scheduled
+ * times and details.
+ * 
+ * 	* `const [allAppointments, setAllAppointments] = useState([]);`: This line stores
+ * the appointments in an array named `allAppointments`. The `setAllAppointments`
+ * function is used to reset the state of the appointments to an empty array when the
+ * component mounts.
+ * 	* `const monthNames = [...];`: This line defines a const called `monthNames` and
+ * assigns it an array of month names.
+ * 	* `const convertDate = (newDate) => { ... };`: This line defines a function called
+ * `convertDate` that takes a date object as input and returns its year, month, and
+ * day in a formatted string.
+ * 	* `const getTime = (newDate) => { ... };`: This line defines a function called
+ * `getTime` that takes a date object as input and returns its hour, minute, and AM/PM
+ * in a formatted string.
+ * 	* `<Badge ... />`: This element is a material UI component called `Badge` that
+ * displays a button with text. The `Badge` component is used to display a payment
+ * success or pending message based on whether the appointment has been paid.
+ * 	* `<a ... />`: This element is an HTML anchor tag that displays a button with
+ * text. The `a` element is used to display a booking appointment button.
+ */
+
 const AppointmentDetailPage = () => {
   const isUserLoggedIn = getCookie("token");
   const navigate = useNavigate();
@@ -217,6 +243,18 @@ const AppointmentDetailPage = () => {
     "Nov",
     "Dec",
   ];
+
+  /**
+   * @description Takes a string in the format of `MM/DD/YYYY`, and returns the date
+   * in the format `DD MM YYYY`.
+   * 
+   * @param { string } newDate - date to be processed and is used to create a new Date
+   * object that contains its values.
+   * 
+   * @returns { string } a string representation of the date in the format `day month
+   * year`.
+   */
+
   const convertDate = (newDate) => {
     const dateObject = new Date(newDate);
     // Get year, month, day, hour, minute, and AM/PM separately
@@ -226,6 +264,18 @@ const AppointmentDetailPage = () => {
     const formattedDateTime = `${day} ${month} ${year}`;
     return formattedDateTime;
   };
+
+
+  /**
+   * @description Takes a date object as input and returns its hour, minute, and AM/PM
+   * indicators in a string format.
+   * 
+   * @param { string } newDate - 24-hour date to be formatted and returned as a string
+   * in the function.
+   * 
+   * @returns { string } a string representing the current time in a 12-hour format,
+   * with the hour and minute padded with leading zeros if necessary.
+   */
 
   const getTime = (newDate) => {
     const dateObject = new Date(newDate);
@@ -241,6 +291,14 @@ const AppointmentDetailPage = () => {
     <div className="row d-flex mt-5 justify-content-center align-items-center">
       <div className="col-8 p-5 m-5">
         <h2 className="mb-3">MY APPOINTMENT'S SCHEDULE</h2>
+        /**
+         * @description Generates a list of appointment cards based on given appointments,
+         * each card containing information such as date, service type, scheduled time,
+         * caregiver name and specialty, as well as a badge indicating whether the payment
+         * is successful or pending.
+         * 
+         * @param { string } className - CSS class name to apply to the `Card` component.
+         */
         {allAppointments.length > 0 ? (
           <div className="appointment-card-container">
             {(allAppointments || APPOINTMENT_DETAIL).map((eachAppointment) => (

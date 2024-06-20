@@ -1,6 +1,42 @@
 import AboutUsImage from "../../assets/images/team5.jpg";
 import "./style.scss";
 
+/**
+ * @description Returns a JSX component that represents an "About Us" page, consisting
+ * of a banner, navigation menu, and three sections containing text and SVG elements.
+ * 
+ * @returns { SVG element } a React component representing an about us page for a
+ * healthcare organization, including a hero section and a testimonials section.
+ * 
+ * 	1/ `AboutUsPage`: This is the outermost component that wraps around the entire
+ * About Us page content. It has no direct properties but serves as an anchor point
+ * for all the other components within it.
+ * 	2/ `SectionTitle`: Inside the `AboutUsPage` component, there is a `SectionTitle`
+ * component with a `className` property set to `"h4 mb-3"`. This component displays
+ * the "Started with bigger vision" headline.
+ * 	3/ `Paragraph`: Within the `SectionTitle` component, there is a `Paragraph`
+ * component with a `className` property set to `"text-secondary mb-0"`。 This component
+ * displays the "Bring back to society with simple methods." text.
+ * 	4/ `div.col-12.col-md-6`: This is a div container that spans 12 columns on small
+ * screens, 6 columns on medium screens, and 1 column on large screens. It is used
+ * to wrap around the About Us content.
+ * 	5/ `<h2>` and `<p>`: These are HTML elements for headings and paragraphs,
+ * respectively. The `h2` element has a `className` property set to `"h4 mb-3"` and
+ * displays the "Community and their stories" heading. The `p` element has a `className`
+ * property set to `"text-secondary mb-0"` and displays the "Skilled doctors and human
+ * resources here in our own care." text.
+ * 	6/ `<div>` and `<svg>`: These are HTML elements for divisions and SVG images,
+ * respectively. The inner SVG element has a `viewBox` attribute set to `"0 0 16 16"`
+ * and uses the `bi-chat-text` icon from the Bootstrap icons font awesome.
+ * 	7/ `<path>` and `<circle>`: These are SVG elements for paths and circles,
+ * respectively. The inner `path` element has a `d` attribute set to `"M2.678 11.894a1
+ * 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.39.706-5.375.526z"` and the inner
+ * `circle` element has a `cx` attribute set to `"4"` and a `cy` attribute set to
+ * `"4"` and uses the `AboutUsPage` function output as its context.
+ * 	8/ `<div>`: This is an HTML element for a division, used to wrap around the SVG
+ * elements inside the previous components.
+ */
+
 const AboutUsPage = () => {
   return (
     <div className="row">

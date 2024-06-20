@@ -21,6 +21,15 @@ import ProfilePage from "./containers/ProfilePage";
 import AppointmentDetailPage from "./containers/AppointmentDetail";
 import ForgotPasswordPage from "./containers/ForgotPassword";
 
+/**
+ * @description Returns an HTML structure consisting of a toast container, Routes
+ * component with different routes, and either a header or footer component based on
+ * specific conditions.
+ * 
+ * @returns { Component } a JSX component that renders a responsive layout of
+ * navigational elements and a Footer.
+ */
+
 const App = () => {
   const location = useLocation();
   const { pathname } = location;

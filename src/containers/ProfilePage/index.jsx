@@ -17,6 +17,15 @@ const INITIAL_VALUE = {
   address: "",
 };
 
+
+/**
+ * @description Generates high-quality documentation for code given to it, by providing
+ * a functional React component that allows users to update their personal information
+ * and profile details.
+ * 
+ * @returns { any } a form to update a user's profile information.
+ */
+
 const ProfilePage = () => {
   const isUserLoggedIn = getCookie("token");
   const username = getCookie("username");
@@ -29,9 +38,45 @@ const ProfilePage = () => {
   });
   const [formValue, setFormValue] = useState(INITIAL_VALUE);
 
+  /**
+   * @description Updates the form value object by setting a new value for a specified
+   * name in the form, based on an event trigger.
+   * 
+   * @param { object } event - current event object passed to the function, providing
+   * the current value of the form element being updated.
+   */
+
   const handleOnChange = (event) => {
     setFormValue({ ...formValue, [event.target.name]: event.target.value });
   };
+
+
+  /**
+   * @description Prevents the form submission, makes an HTTP Patch request to update
+   * the user's profile with the provided `username` and `formValue`, and handles the
+   * response with validation and error handling.
+   * 
+   * @param { object } e - event object, which provides information about the form
+   * submission and allows the code to perform necessary actions such as preventing the
+   * default form submission behavior.
+   * 
+   * @returns { HTTP response } a JSON response indicating whether the profile has been
+   * updated successfully or not.
+   * 
+   * 	* `updateUserDetail`: This is an asynchronous method that updates the user's
+   * details in the backend. It takes two arguments: `{ username, body: formValue }`
+   * representing the username and updated detail information.
+   * 	* `.then()`: This is a promise-based method chaining used to handle the response
+   * from the backend after updating the user's details. The function inside `then()`
+   * is called with two arguments: `res` (the response object) and `function(data)` (a
+   * callback function).
+   * 	* `.json()`: This is a method that retrieves the raw JSON data from the response
+   * object. It is passed as an argument to the callback function inside `then()`.
+   * 	* `function (data)`: This is the callback function called with the JSON data
+   * returned by the backend. If the data is successfully updated, the callback function
+   * displays a successful update message using the `toast` method. Otherwise, it
+   * displays the error message in JSON format using the `toast` method.
+   */
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
