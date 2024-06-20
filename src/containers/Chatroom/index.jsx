@@ -6,16 +6,16 @@ import { getCookie } from "../../utils/setCookie";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import { toast } from "react-toastify";
 import Select from "react-select";
-import {
-  MainContainer,
-  ChatContainer,
-  MessageList,
-  Message,
-  MessageInput,
-  Conversation,
-  ConversationList,
-  Avatar,
-} from "@chatscope/chat-ui-kit-react";
+// import {
+//   MainContainer,
+//   ChatContainer,
+//   MessageList,
+//   Message,
+//   MessageInput,
+//   Conversation,
+//   ConversationList,
+//   Avatar,
+// } from "@chatscope/chat-ui-kit-react";
 import "./style.scss";
 import {
   getAllChatRoomMessages,
@@ -226,7 +226,7 @@ const ChatroomPage = () => {
   return (
     <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center justify-content-center chat-container">
       <div className="col-8 chat-column">
-        <MainContainer className="main-chat-container">
+        {/* <MainContainer className="main-chat-container">
           <div
             style={{
               height: "70vh",
@@ -324,7 +324,7 @@ const ChatroomPage = () => {
               />
             </ChatContainer>
           </div>
-        </MainContainer>
+        </MainContainer> */}
       </div>
     </div>
   );
