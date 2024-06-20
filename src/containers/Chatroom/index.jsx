@@ -6,16 +6,16 @@ import { getCookie } from "../../utils/setCookie";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import { toast } from "react-toastify";
 import Select from "react-select";
-import {
-  MainContainer,
-  ChatContainer,
-  MessageList,
-  Message,
-  MessageInput,
-  Conversation,
-  ConversationList,
-  Avatar,
-} from "@chatscope/chat-ui-kit-react";
+// import {
+//   MainContainer,
+//   ChatContainer,
+//   MessageList,
+//   Message,
+//   MessageInput,
+//   Conversation,
+//   ConversationList,
+//   Avatar,
+// } from "@chatscope/chat-ui-kit-react";
 import "./style.scss";
 import {
   getAllChatRoomMessages,
@@ -27,13 +27,12 @@ import { validateResponse } from "../../utils/validateResponse";
 const chatSocketUrl = process.env.REACT_APP_CHAT_SOCKET_URL;
 
 /**
- * @description Is responsible for rendering the chat room page, including displaying
- * a list of all conversations and messages within them, as well as an input field
- * to compose new messages and send buttons. It fetches user data from an API and
- * displays it in a select menu, and handles sending messages via WebSocket connection.
+ * @description Renders a chat interface allowing users to create, read, and send
+ * messages in a specific chat room. It retrieves data from an API, renders it as a
+ * list of conversations and messages, and provides an input field for sending new messages.
  * 
- * @returns { object } a React component that displays a chat room interface with
- * conversations and message input.
+ * @returns { array } a React component that displays a chat interface for users to
+ * communicate with each other.
  */
 const ChatroomPage = () => {
   const token = getCookie("token");
@@ -69,9 +68,9 @@ const ChatroomPage = () => {
 
   useEffect(() => {
     /**
-     * @description Establishes a WebSocket connection to the server and listens for
-     * messages from the server. It handles incoming messages, updates the chatrooms state
-     * and saves them to the component state.
+     * @description Creates a WebSocket object, listens for events related to connection
+     * establishment and message delivery, and handles incoming messages by updating local
+     * state.
      */
     const connectWebSocket = () => {
       const socketUrl = `${chatSocketUrl}?${token}`;
@@ -132,16 +131,15 @@ const ChatroomPage = () => {
         .then(function (data) {
           if (data) {
             /**
-             * @description Combines `eachData` values to form a new object with `value` and
-             * `label`. The `value` is an attribute of each `data` item, while the `label` is
-             * constructed by concatenating the `first_name`, `last_name`, and `username` attributes.
+             * @description Takes an `eachData` object and returns an object with `value` and
+             * `label` properties, where `value` is the value of `eachData.username`, and `label`
+             * is a concatenation of `eachData.first_name`, `eachData.last_name`, and `eachData.username`.
              * 
-             * @param { object } eachData - username, first name, last name, and username of a
-             * user, which are then used to create a custom label for each user.
+             * @param { object } eachData - 1st item of an array containing data about users,
+             * providing its username, first name, last name, and concatenated full name.
              * 
-             * @returns { object } an object with `value` and `label` properties, where `value`
-             * contains the username and `label` is a custom string created by concatenating the
-             * person's first name, last name, and username.
+             * @returns { object } an object containing the user's username and a label consisting
+             * of their first name, last name, and username combined.
              */
             const allOptions = data.map((eachData) => ({
               value: eachData.username,
@@ -181,10 +179,10 @@ const ChatroomPage = () => {
   }, []);
 
   /**
-   * @description Sends a message via WebSocket connection. It takes the message to be
-   * sent as an argument, and if the connection is open, it serializes the message into
-   * JSON format and sends it through the connection. If the connection is not established,
-   * it logs an error message to the console and displays an error toast.
+   * @description Sends a message from the client to the server via a WebSocket connection.
+   * It checks if the connection is open, prepares the message data in JSON format, and
+   * sends it to the server. If the connection is not open, it logs an error message
+   * and displays an error toast to the user.
    */
   const sendMessage = () => {
     try {
@@ -228,12 +226,14 @@ const ChatroomPage = () => {
   }, [activeChat.uuid]);
 
   /**
-   * @description Updates active user data and adds a new item to the all chatrooms
-   * array when the selected option changes.
+   * @description 1. Logs the selected option and its data to the console.
+   * 2/ Sets the active user to the selected option's value.
+   * 3/ Creates a new object containing the selected option's name, image, and last message.
+   * 4/ Updates the `AllChatrooms` state with the new object.
    * 
-   * @param { object } selectedOption - selected user from the list of available users
-   * to be assigned as the active user for the chat session, and its values are used
-   * to set the active user and create new data objects in the database.
+   * @param { object } selectedOption - selected element from a dropdown menu or list
+   * that contains different options, and it provides the name of the option selected
+   * by the user.
    */
   const handleSelectChange = (selectedOption) => {
     console.log(selectedOption, "data");
@@ -251,17 +251,20 @@ const ChatroomPage = () => {
   };
 
   /**
-   * @description Renders an empty message card with a chat bubble and a "No Messages
-   * Found" label centered vertically on a white background.
+   * @description Creates an HTML div with an empty message and an image of a chat bubble.
    * 
-   * @returns { image element } a card with an empty chat bubble and a centrally
-   * positioned message reading "No Messages Found".
+   * @returns { image element of type `img } an HTML element containing a messageless
+   * card and a text message "No Messages Found".
    * 
-   * 	* `<div>` - The parent element of the entire response, which contains a card image
-   * and a message.
-   * 	* `<img>` - A loading-lazy image of a chat bubble with no messages inside, with
-   * a height of 250 pixels and an alt attribute of an empty string.
-   * 	* `<p>` - A centrally positioned paragraph with the text "No Messages Found".
+   * 	* `div`: A wrapping div element with class "no-message-div".
+   * 	* `className`: The value of this attribute is "d-flex-column align-items-center
+   * justify-content-center".
+   * 	* `img`: An img element with class "card-img-top", loading="lazy" and src set to
+   * "chatEmpty". The height of the img element is 250 pixels.
+   * 	* `p`: A p element with class "text-center".
+   * 
+   * 	There are no other attributes or properties present in the output of the `NoMessage`
+   * function.
    */
   const NoMessage = () => (
     <div className="no-message-div d-flex-column align-items-center justify-content-center">
@@ -279,7 +282,7 @@ const ChatroomPage = () => {
   return (
     <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center justify-content-center chat-container">
       <div className="col-8 chat-column">
-        <MainContainer className="main-chat-container">
+        {/* <MainContainer className="main-chat-container">
           <div
             style={{
               height: "70vh",
@@ -305,41 +308,6 @@ const ChatroomPage = () => {
             <ConversationList style={{ height: "52vh", overflow: "auto" }}>
               {allChatrooms.length > 0 ? (
                 <>
-                  {/**
-                   * @description Provides information about a chat room, including its name and an
-                   * avatar image. When the chat room is clicked, the active chat index and user are
-                   * set to the respective values for that chat room.
-                   * 
-                   * @param { string } key - unique identifier for each chat room and is used to associate
-                   * the room with its corresponding message information when displaying the room's
-                   * last message.
-                   * 
-                   * @param { string } name - name of the chat room.
-                   * 
-                   * @param { `index` value } active - index of the currently active chat room and
-                   * updates the `activeChat` variable accordingly.
-                   * 
-                   * 	* `key`: A unique identifier (uuid) for each conversation.
-                   * 	* `name`: The name of the person or group in the conversation.
-                   * 	* `active`: Indicates whether the current chat is active (true) or not (false).
-                   * This property is set to the index of the currently active chat.
-                   * 	* `info`: The last message received in the conversation, which can be a string
-                   * of text, an image, or other types of data.
-                   * 
-                   * @param { string } info - message left by the last user to join the chat room.
-                   * 
-                   * @param { JavaScript Function. } onClick - 4th action, setting the active chat and
-                   * active user details to those specified within the room information object passed
-                   * into the `Conversation` component.
-                   * 
-                   * 	* `setActiveChat`: a function that updates the active chat with the provided
-                   * `index` and `uuid`.
-                   * 	* `setActiveUser`: a function that updates the active user with the provided
-                   * `value` (name) and `label` (display name).
-                   * 
-                   * 	Note: The `onClick` function is deserialized from a JSON object, so it has all
-                   * the properties and attributes defined in that object.
-                   */}
                   {allChatrooms.map((eachRoom, index) => (
                     <Conversation
                       key={eachRoom.uuid}
@@ -385,10 +353,6 @@ const ChatroomPage = () => {
                 height: "64vh",
               }}
             >
-              {/**
-               * @description Maps over an array of message objects and generates a list of messages,
-               * including information such as text, sent time, sender, direction, and position.
-               */}
               <MessageList>
                 {allMessages.length > 0
                   ? allMessages.map((eachMessage) => (
@@ -407,28 +371,6 @@ const ChatroomPage = () => {
                     ))
                   : ""}
               </MessageList>
-              {/**
-               * @description Provides an interface for users to enter messages and sends them to
-               * a designated location.
-               * 
-               * @param { string } className - class name for an element in JavaScript and sets its
-               * attribute value to that string.
-               * 
-               * @param { string } value - message that is entered by the user in the text input field.
-               * 
-               * @param { string } onChange - function that will be triggered when the user changes
-               * the value of the `message` input field.
-               * 
-               * @param { string } placeholder - default value for the message input field, which
-               * allows the user to type or edit their message before sending it.
-               * 
-               * @param { event. } onSend - functionality that will be triggered when the user
-               * clicks the "Send" button and sends the entered message to the chat platform.
-               * 
-               * 	1/ `sendMessage`: This is the main event handler function called when the user
-               * sends a message. It takes no arguments.
-               * 	2/ `value`: This property returns the current value of the message input field.
-               */}
               <MessageInput
                 className="p-4"
                 value={message}
@@ -438,7 +380,7 @@ const ChatroomPage = () => {
               />
             </ChatContainer>
           </div>
-        </MainContainer>
+        </MainContainer> */}
       </div>
     </div>
   );
