@@ -1,0 +1,25 @@
+.bsb-ratings {
+  font-size: 30px;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.blockquote-bio {
+  max-height: 15vh;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.caregiver-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .card {
+    width: 46rem;
+  }
+}

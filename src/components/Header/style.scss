@@ -1,0 +1,41 @@
+.navbar {
+  padding: 0;
+
+  .homecare-name {
+    font-size: 25px;
+    font-weight: 600;
+    color: #ffffff;
+    font-family: "Nothing You Could Do", cursive;
+  }
+
+  .main-header-nav {
+    background: darkblue;
+    .main-logo {
+      padding-left: 5rem;
+    }
+  }
+
+  .nav-item {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0 2rem;
+
+    .nav-link {
+      color: #ffffff;
+    }
+  }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 1346px) {
+  .nav-item,
+  .homecare-name {
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 1080px) {
+  .main-logo {
+    padding-left: 2rem !important;
+  }
+}
