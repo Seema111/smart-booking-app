@@ -1,5 +1,5 @@
-import HomeCareDashbaordImg from "../../assets/images/oldladies.jpg";
-import HomeCareDashbaordImg2 from "../../assets/images/old_care.jpg";
+import HomeCareDashbaordImg from "../../assets/images/logo5.png";
+import HomeCareDashbaordImg2 from "../../assets/images/background.png";
 
 const CarouselImage = () => {
     return <div id="carouselExampleCaptions" className="carousel slide">

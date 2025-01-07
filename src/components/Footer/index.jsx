@@ -1,11 +1,11 @@
-import HomeCareLogo from "../../assets/images/logo.png";
+import HomeCareLogo from "../../assets/images/logo1.png";
 
 const Footer = () => {
   return (
-    <div className="row" style={{ background: "darkblue" }}>
+    <div className="row" style={{ background: "#FAF9F6" }}>
       <div className="col-12">
         <footer className="footer">
-          <section className="py-md-5 py-xl-8 border-top text-white border-light">
+          <section className="py-md-5 py-xl-8 border-top border-light">
             <div className="container overflow-hidden">
               <div className="row gy-4 gy-lg-0 justify-content-xl-between">
                 <div className="col-12 col-md-4 col-lg-3 col-xl-2">
@@ -13,7 +13,7 @@ const Footer = () => {
                     <a href="#!">
                       <img
                         src={HomeCareLogo}
-                        alt="Happy Home"
+                        alt="Prana Home Care"
                         width="88"
                         height="88"
                         className="d-inline-block align-text-top"
@@ -29,7 +29,7 @@ const Footer = () => {
                     </address>
                     <p className="mb-1">
                       <a
-                        className="link-light text-decoration-none"
+                        className="text-decoration-none"
                         href="tel:+01-5970012"
                       >
                         01-5970012
@@ -37,7 +37,7 @@ const Footer = () => {
                     </p>
                     <p className="mb-0">
                       <a
-                        className="link-light text-decoration-none"
+                        className="text-decoration-none"
                         href="mailto:demo@yourdomain.com"
                       >
                         demo@gmail.com
@@ -52,7 +52,7 @@ const Footer = () => {
                       <li className="mb-2">
                         <a
                           href="#!"
-                          className="link-light text-decoration-none"
+                          className="text-decoration-none"
                         >
                           About
                         </a>
@@ -60,7 +60,7 @@ const Footer = () => {
                       <li className="mb-2">
                         <a
                           href="#!"
-                          className="link-light text-decoration-none"
+                          className="text-decoration-none"
                         >
                           Contact
                         </a>
@@ -68,7 +68,7 @@ const Footer = () => {
                       <li className="mb-2">
                         <a
                           href="#!"
-                          className="link-light text-decoration-none"
+                          className="text-decoration-none"
                         >
                           Advertise
                         </a>
@@ -76,7 +76,7 @@ const Footer = () => {
                       <li className="mb-2">
                         <a
                           href="#!"
-                          className="link-light text-decoration-none"
+                          className="text-decoration-none"
                         >
                           Terms of Service
                         </a>
@@ -84,7 +84,7 @@ const Footer = () => {
                       <li className="mb-0">
                         <a
                           href="#!"
-                          className="link-light text-decoration-none"
+                          className="text-decoration-none"
                         >
                           Privacy Policy
                         </a>
@@ -102,20 +102,20 @@ const Footer = () => {
               </div>
             </div>
           </section>
-          <div className="py-4 py-md-5 py-xl-8 border-top border-light-subtle text-white">
+          <div className="py-4 py-md-5 py-xl-8 border-top border-light-subtle">
             <div className="container overflow-hidden">
               <div className="row gy-4 gy-md-0">
                 <div className="col-xs-12 col-md-7 order-1 order-md-0">
                   <div className="copyright text-center text-md-start">
                     &copy; 2024. All Rights Reserved.
                   </div>
-                  <div className="credits text-whitetext-center text-md-start mt-2 fs-7">
+                  <div className="credits text-center text-md-start mt-2 fs-7">
                     Built by{" "}
                     <a
                       href="https://bootstrapbrain.com/"
-                      className="link-light text-decoration-none"
+                      className="text-decoration-none"
                     >
-                      Sunayana Shrestha
+                      Seema Thapa
                     </a>{" "}
                     with <span className="text-primary">&#9829;</span>
                   </div>

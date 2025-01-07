@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import HomeCareLogo from "../../assets/images/mainLogo.jpg";
+import HomeCareLogo from "../../assets/images/logo1.png";
 import { deleteCookie, getCookie } from "../../utils/setCookie";
-import "./style.scss";
 import { toast } from "react-toastify";
+import "./style.scss";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -20,16 +20,16 @@ const Header = () => {
       <div>
         <nav className="navbar navbar-expand-lg fixed-top bg-body-tertiary">
           <div className="container-fluid main-header-nav">
-            <a className="navbar-brand main-logo" href="#">
+            <div className="navbar-brand main-logo" href="#">
               <img
                 src={HomeCareLogo}
-                alt="Happy Home"
+                alt="Prana Home Care"
                 width="88"
                 height="88"
                 className="d-inline-block align-text-top"
               />
-            </a>
-            <a className="navbar-brand homecare-name">Happy Home</a>
+            </div>
+            <div className="navbar-brand homecare-name">Prana Home Care</div>
             <button
               className="navbar-toggler"
               type="button"

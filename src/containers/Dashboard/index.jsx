@@ -16,16 +16,16 @@ const Dashboard = () => {
           <CarouselImage />
         </div>
         <div className="col-md-6 dashboard-container__introduction d-flex flex-column justify-content-center">
-          <h1>Happy Home</h1>
+          <h1>Prana Home Care</h1>
           <h2>A closer look at your satisfaction</h2>
           <p>
-            Welcome to Happy Home Elderly Care, where compassion meets comfort.
+            Welcome to Prana Home Care Elderly Care, where compassion meets comfort.
             Our mission is to provide unparalleled care and support, ensuring
             our beloved seniors enjoy their golden years with joy, dignity, and
             peace of mind.
           </p>
           <p>
-            At Happy Home, we understand the unique needs and desires of the
+            At Prana Home Care, we understand the unique needs and desires of the
             elderly, and we are committed to creating a nurturing environment
             that feels like home.
           </p>
@@ -270,11 +270,11 @@ const Dashboard = () => {
                 ></div>
                 <blockquote className="bsb-blockquote-icon mb-3">
                   I cant express enough gratitude for the caregiving services
-                  provided by Happy Home Care. From the moment they stepped into
+                  provided by Prana Home Care Care. From the moment they stepped into
                   our home, their professionalism, compassion, and dedication
                   were evident. They not only took exceptional care of my loved
                   one but also provided emotional support to our entire family
-                  during a challenging time. I highly recommend Happy Home care
+                  during a challenging time. I highly recommend Prana Home Care care
                   to anyone in need of compassionate caregiving services
                 </blockquote>
                 <figure className="d-flex align-items-center m-0 p-0">
@@ -300,7 +300,7 @@ const Dashboard = () => {
                   data-bsb-star-off="1"
                 ></div>
                 <blockquote className="bsb-blockquote-icon mb-3">
-                  I recently used Happy home care lab services for my medical
+                  I recently used Prana Home Care care lab services for my medical
                   testing needs, and I couldnt be more impressed. The efficiency
                   and accuracy of their lab services were outstanding. Not only
                   did they provide quick results, but their staff also went
@@ -333,13 +333,13 @@ const Dashboard = () => {
                   data-bsb-star-off="2"
                 ></div>
                 <blockquote className="bsb-blockquote-icon mb-3">
-                  Choosing Happy Home Care was the best decision we made for our
+                  Choosing Prana Home Care Care was the best decision we made for our
                   family. Their team of caregivers provided exceptional support
                   and care for our loved one, treating them with the utmost
                   respect and kindness. Their dedication to improving the
                   quality of life for those they serve is truly remarkable. We
                   are forever grateful for the invaluable assistance and
-                  companionship they provided. Thank you, Happy Home Care, for
+                  companionship they provided. Thank you, Prana Home Care Care, for
                   your unwavering commitment to excellence.
                 </blockquote>
                 <figure className="d-flex align-items-center m-0 p-0">
@@ -365,13 +365,13 @@ const Dashboard = () => {
                   data-bsb-star-off="0"
                 ></div>
                 <blockquote className="bsb-blockquote-icon mb-3">
-                  I cant thank Happy Home Care enough for their exceptional lab
+                  I cant thank Prana Home Care Care enough for their exceptional lab
                   services. From the moment I walked into their facility, I was
                   greeted with professionalism and warmth. The entire process,
                   from sample collection to receiving results, was seamless and
                   efficient. Their state-of-the-art equipment and knowledgeable
                   staff instilled confidence in the accuracy of my test results.
-                  I highly recommend Happy Home Care to anyone in need of
+                  I highly recommend Prana Home Care Care to anyone in need of
                   reliable and timely lab testing.
                 </blockquote>
                 <figure className="d-flex align-items-center m-0 p-0">

@@ -72,7 +72,7 @@ const LabServicesPage = () => {
                       height={400}
                       alt=""
                     />
-                    <div className="card-body border bg-white p-4">
+                    <div className="card-body border p-4">
                       <div className="entry-header mb-3">
                         <h2 className="card-title entry-title h4 mb-0">
                           <a

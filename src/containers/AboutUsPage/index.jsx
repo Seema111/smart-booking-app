@@ -15,7 +15,7 @@ const AboutUsPage = () => {
           <div className="col-12 col-xl-11 text-center">
             <h1 className="mb-3 text-center fw-bold">OUR STORY</h1>
             <p className="lead fs-4 text-secondary mb-3">
-              At Happy Home Care, our story is rooted in a deep commitment to
+              At Prana Home Care Care, our story is rooted in a deep commitment to
               enriching the lives of our elderly residents. We envisioned a
               place where compassion meets innovation, where every resident is
               valued as a cherished member of our extended family.
@@ -30,7 +30,7 @@ const AboutUsPage = () => {
               standards of elderly care.
             </p>
             <p className="fs-5 mb-5">
-              With this vision at our core, we set out to establish Happy Home
+              With this vision at our core, we set out to establish Prana Home Care
               Care—a sanctuary designed to provide unparalleled support and
               comfort to our residents. Guided by principles of empathy,
               respect, and integrity, we assembled a team of dedicated
