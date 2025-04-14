@@ -4,10 +4,65 @@ import { deleteCookie, getCookie } from "../../utils/setCookie";
 import { toast } from "react-toastify";
 import "./style.scss";
 
+/**
+ * @description Generates a HTML component that renders a navbar with logo, home,
+ * caregiving, lab services, about us, chat, and help buttons, as well as an account
+ * dropdown menu for logged-in users.
+ * 
+ * @returns { HTML element } a HTML structure for a header navigation bar with dropdown
+ * menu.
+ * 
+ * 	1/ `</>`: This marks the end of the HTML document.
+ * 	2/ `<div>`: This element creates a new division tag within the HTML document.
+ * 	3/ `classList.add()`: This method adds a class name to the HTML element, in this
+ * case, "container-fluid".
+ * 	4/ `<nav>`: This element creates a new navigation element within the HTML document.
+ * 	5/ `container-fluid`: This is the added class name, which makes the container
+ * fluid and wider than its parent element.
+ * 	6/ `main-header-nav`: This is the added class name, which styles the navigation
+ * element as a main header navigation.
+ * 	7/ `<a>`: This element creates a new hyperlink within the HTML document.
+ * 	8/ `className="navbar-brand"`: This sets the class of the hyperlink to "navbar-brand".
+ * 	9/ `src` :This attributes sets the source of the hyperlink to an image file named
+ * "HomeCareLogo".
+ * 	10/ `alt` :This attribute sets the alternative text for the image, in this case,
+ * "Happy Home".
+ * 	11/ `width` :This attribute sets the width of the hyperlink image to 88 pixels.
+ * 	12/ `height` :This attribute sets the height of the hyperlink image to 88 pixels.
+ * 	13/ `className` :This sets the class name of the hyperlink to "main-logo".
+ * 	14/ `<a>`: This element creates a new hyperlink within the HTML document.
+ * 	15/ `className"homecare-name"`: This sets the class name of the hyperlink to "homecare-name".
+ * 	16/ `<button>` :This element creates a new button element within the HTML document.
+ * 	17/ `className` :This sets the class name of the button to "navbar-toggler".
+ * 	18/ `type`: This attribute sets the type of the button to a click event.
+ * 	19/ `data-bs-toggle`: This attribute sets the toggle state of the button to "dropdown".
+ * 	20/ `aria-expanded`: This attribute sets the expanded state of the button to "false".
+ * 	21/ `<ul>` :This element creates a new unordered list element within the HTML document.
+ * 	22/ `className"dropdown"` :This sets the class name of the ul element to "dropdown".
+ * 	23/ `<li>` :This element creates a new list item within the HTML document.
+ * 	24/ `className` :This sets the class name of the li element to "dropdown-item".
+ * 	25/ `<a>`: This element creates a new hyperlink within the HTML document.
+ * 	26/ `className"bi bi-person-lock"`: This sets the class name of the a element to
+ * "bi bi person lock".
+ * 	27/ `<span>` :This element creates a new span element within the HTML document.
+ * 	28/ `className` :This sets the class name of the span element to "p-2".
+ * 	29/ `<hr>` :This element creates a horizontal line within the HTML document.
+ * 	30/ `</ul>` :This marks the end of the ul element.
+ * 
+ * 	In summary, the `Header` function returns an HTML element with a navigation bar
+ * that contains a logo image, a user name hyperlink, and a button to open a dropdown
+ * menu containing additional hyperlinks.
+ */
+
 const Header = () => {
   const navigate = useNavigate();
   const isUserLoggedIn = getCookie("token");
   const username = getCookie("username");
+  /**
+   * @description Deleting cookie named "token", "username" and remove item from local
+   * storage. It also displays a toast message indicating successful logout and navigates
+   * to the login page.
+   */
   const logout = () => {
     deleteCookie("token");
     deleteCookie("username");

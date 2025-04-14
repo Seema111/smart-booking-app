@@ -1,5 +1,42 @@
 import HelpUsImage from "../../assets/images/help2.jpg";
 
+
+/**
+ * @description Creates an Accordion component with seven panel sections, each
+ * containing a heading and an accompanying description. It returns a JSX element
+ * representing the accordion layout.
+ * 
+ * @returns { HTML document that contains a list of accordion sections with content
+ * related to home care services } a HTML document with a table of contents and
+ * sections on home care services, benefits, selection process, customization, quality
+ * monitoring, and a feedback section.
+ * 
+ * 	* The `div` element with the class `accordion-header` contains the button that
+ * triggers the accordion effect when clicked.
+ * 		+ The `id` attribute of this element is `#panelsStayOpen-heading1`, which
+ * identifies the specific header within the accordion.
+ * 		+ The `className` attribute includes the `accordion-header` class, which styles
+ * the header element.
+ * 	* Within each header element, there are two subsequent elements:
+ * 		+ The `div` element with the class `accordion-body` contains the content of the
+ * header, including the question and answer.
+ * 		+ The `button` element with the class `accordion-button` is used to toggle the
+ * collapse/expand state of the accordion panel.
+ * 	* The `id` attribute of each button element is unique and corresponds to the
+ * header it is associated with.
+ * 	* Within the `div.accordion-body` element, there are two subsequent elements:
+ * 		+ The `p` element contains the content of the answer.
+ * 		+ The `span` element contains the `aria-expanded` attribute, which controls the
+ * expand/collapse state of the accordion panel.
+ * 	* Each header element also has an `id` attribute that identifies it uniquely
+ * within the accordion structure.
+ * 
+ * 	In summary, this component is a part of a help system that provides information
+ * on home care services and how they can benefit individuals in various situations.
+ * The component consists of multiple headers with content displayed under each header
+ * when expanded, and collapsed state controlled by buttons next to each header.
+ */
+
 const HelpPage = () => {
   return (
     <div className="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center justify-content-center">

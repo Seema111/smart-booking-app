@@ -1,6 +1,43 @@
 import HomeCareDashbaordImg from "../../assets/images/logo5.png";
 import HomeCareDashbaordImg2 from "../../assets/images/background.png";
 
+/**
+ * @description Creates a carousel component with two images and captions.
+ * 
+ * @returns { HTML `div` element } a React component that renders an instance of a
+ * Bootstrap carousel with two slide items.
+ * 
+ * 	* `div`: This is the outermost element of the carousel, which contains all the
+ * other elements. It has an `id` attribute set to `"carouselExampleCaptions"` and a
+ * `className` set to `"carousel slide"`.
+ * 	* `div.carousel-indicators`: This is a container element for the carousel indicators.
+ * It has a ` className` set to `"carousel-indicators"` and contains two button elements:
+ * 		+ `<button>...</button>`: These are the carousel indicators, which can be clicked
+ * to move between slides. Each indicator has an `aria-label` attribute set to the
+ * number of the slide it represents, and a `data-bs-target` attribute set to the ID
+ * of the current slide.
+ * 	* `<div.carousel-inner>`: This is the inner container for the carousel content.
+ * It contains two `div` elements:
+ * 		+ `<div class="carousel-item active">`: This is the first slide, which has an
+ * `src` attribute set to `"HomeCareDashbaordImg"` and an `alt` attribute set to
+ * `"homecareladies"`. It also has a `className` set to `"carousel-item"` and an
+ * `aria-label` attribute set to the current slide.
+ * 		+ `<div class="carousel-item">`: This is the second slide, which has an `src`
+ * attribute set to `"HomeCareDashbaordImg2"` and an `alt` attribute set to `"homecare2"`.
+ * It also has a `className` set to `"carousel-item"` and an `aria-label` attribute
+ * set to the current slide.
+ * 	* `<button class="carousel-control-prev">...</button>`: This is the previous
+ * button element, which can be clicked to move to the previous slide. It has an
+ * `aria-label` attribute set to `"Previous"` and a `data-bs-slide` attribute set to
+ * `"prev"`.
+ * 	* `<button class="carousel-control-next">...</button>`: This is the next button
+ * element, which can be clicked to move to the next slide. It has an `aria-label`
+ * attribute set to `"Next"` and a `data-bs-slide` attribute set to `"next"`.
+ * 
+ * 	Overall, the `CarouselImage` function returns a well-structured carousel component
+ * with the necessary elements for navigating between slides using carousel indicators.
+ */
+
 const CarouselImage = () => {
     return <div id="carouselExampleCaptions" className="carousel slide">
         <div className="carousel-indicators">

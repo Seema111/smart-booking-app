@@ -1,5 +1,12 @@
 import HomeCareLogo from "../../assets/images/logo1.png";
 
+/**
+ * @description Generates a footer component that displays social media icons and
+ * links to the company's LinkedIn, Twitter, and Instagram pages.
+ * 
+ * @returns { string } an SVG footer element with a circular logo and navigation links.
+ */
+
 const Footer = () => {
   return (
     <div className="row" style={{ background: "#FAF9F6" }}>

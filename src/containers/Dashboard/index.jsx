@@ -5,6 +5,14 @@ import DashboardImage from "../../assets/images/option1.jpg";
 import "./style.scss";
 import { getCookie } from "../../utils/setCookie";
 
+/**
+ * @description Returns a functional React component that renders a dashboard with
+ * testimonials, an about section, and a card with ratings and quote.
+ * 
+ * @returns { string } a React component that displays a dashboard for a home care
+ * service provider, containing various components and testimonials.
+ */
+
 const Dashboard = () => {
   const storedToken = getCookie("token");
 
