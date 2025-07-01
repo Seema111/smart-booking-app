@@ -1,185 +1,173 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
-import KhaltiCheckout from "khalti-checkout-web";
-import LocationView from "../../components/LocationView";
-import "./style.scss";
-import BookingLogo from "../../assets/images/book4.jpg";
-import CashLogo from "../../assets/images/cash.jpg";
-import KhaltiLogo from "../../assets/images/khalti1.jpg";
+import { useEffect, useState } from 'react'
+import KhaltiCheckout from 'khalti-checkout-web'
+import LocationView from '../../components/LocationView'
+import './style.scss'
+import BookingLogo from '../../assets/images/book4.jpg'
+import CashLogo from '../../assets/images/cash.jpg'
+import KhaltiLogo from '../../assets/images/khalti1.jpg'
 
-import { useNavigate, useParams } from "react-router-dom";
-import { getCookie } from "../../utils/setCookie";
-import {
-  bookAppointment,
-  verifyKhaltiPayment,
-} from "../../services/http-request";
-import { toast } from "react-toastify";
-import CustomModal from "../../components/CustomModal";
-import LoaderSpinner from "../../components/Loader";
-import { validateResponse } from "../../utils/validateResponse";
+import { useNavigate, useParams } from 'react-router-dom'
+import { getCookie } from '../../utils/setCookie'
+import { bookAppointment, verifyKhaltiPayment } from '../../services/http-request'
+import { toast } from 'react-toastify'
+import CustomModal from '../../components/CustomModal'
+import LoaderSpinner from '../../components/Loader'
+import { validateResponse } from '../../utils/validateResponse'
 
-const KHALTI = "Khalti";
+const KHALTI = 'Khalti'
 
 const SERVICE_TYPES = [
   {
-    name: "Lab Services",
-    value: "lab-services",
+    name: 'Lab Services',
+    value: 'lab-services'
   },
   {
-    name: "Caregiving",
-    value: "caregiving",
-  },
-];
+    name: 'Caregiving',
+    value: 'caregiving'
+  }
+]
 
 const AppointmentPage = ({ page }) => {
-  const params = useParams();
-  const token = getCookie("token");
-  const navigate = useNavigate();
+  const params = useParams()
+  const token = getCookie('token')
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!token) {
-      navigate("/login");
+      navigate('/login')
     }
-  }, []);
+  }, [])
   const initialState = {
-    appointment_for: "string",
-    full_name: "string",
-    phone: "string",
-    address: "string",
-    start_date: "",
-    end_date: new Date().toISOString().split("T")[0],
-    description: "string",
-    payment_medium: KHALTI,
-  };
-  const [paymentLoading, setPaymentLoading] = useState(false);
-  const [appointmentDetail, setAppointmentDetail] = useState(initialState);
-  const [showBookingSuccess, setBookingSuccess] = useState(false);
+    appointment_for: 'string',
+    full_name: 'string',
+    phone: 'string',
+    address: 'string',
+    start_date: '',
+    end_date: new Date().toISOString().split('T')[0],
+    description: 'string',
+    payment_medium: KHALTI
+  }
+  const [paymentLoading, setPaymentLoading] = useState(false)
+  const [appointmentDetail, setAppointmentDetail] = useState(initialState)
+  const [showBookingSuccess, setBookingSuccess] = useState(false)
   const [defaultAppointment, setDefaultAppointment] = useState({
-    title: "Caregiving",
-    service: "caregiving",
-    detail: {},
-  });
+    title: 'Caregiving',
+    service: 'caregiving',
+    detail: {}
+  })
 
   const intializKhaltiWeb = (data) => {
-    const { product_id, product_name, product_url, transaction_uuid } = data;
+    const { product_id, product_name, product_url, transaction_uuid } = data
     let config = {
-      // replace this key with yours
-      publicKey: "test_public_key_f1fe71fff3ad4f50aaf6ee0f507546b2",
-      productIdentity: product_id || "testing",
-      productName: product_name || "testing",
+      publicKey: 'test_public_key_f1fe71fff3ad4f50aaf6ee0f507546b2',
+      productIdentity: product_id || 'testing',
+      productName: product_name || 'testing',
       productUrl: product_url,
       eventHandler: {
         onSuccess(payload) {
-          // hit merchant api for initiating verfication
-          console.log(payload, "AFTER SUCCESS");
           try {
             const verifyData = {
               khalti_token: payload.token,
-              transaction_uuid: transaction_uuid,
-            };
+              transaction_uuid: transaction_uuid
+            }
             verifyKhaltiPayment(verifyData)
               .then(function (res) {
-                validateResponse(res);
-                return res.json();
+                validateResponse(res)
+                return res.json()
               })
               .then(function (data) {
                 if (data) {
-                  setBookingSuccess(true);
-                  setPaymentLoading(false);
+                  setBookingSuccess(true)
+                  setPaymentLoading(false)
                 } else {
-                  toast.error(JSON.stringify(data));
+                  toast.error(JSON.stringify(data))
                 }
-              });
+              })
           } catch (error) {
-            console.error("Error:", error);
-            toast.error(JSON.stringify(error));
+            console.error('Error:', error)
+            toast.error(JSON.stringify(error))
           }
         },
-        // onError handler is optional
         onError(error) {
-          // handle errors
-          console.log(error);
+          console.log(error)
         },
         onClose() {
-          console.log("widget is closing");
-        },
+          console.log('widget is closing')
+        }
       },
-      paymentPreference: ["KHALTI"],
-    };
-    let checkout = new KhaltiCheckout(config);
-    // minimum transaction amount must be 10, i.e 1000 in paisa.
-    checkout.show({ amount: 10000 });
-    setPaymentLoading(true);
-  };
+      paymentPreference: ['KHALTI']
+    }
+    let checkout = new KhaltiCheckout(config)
+    checkout.show({ amount: 10000 })
+    setPaymentLoading(true)
+  }
 
   const onSubmitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       bookAppointment(appointmentDetail)
         .then(function (res) {
-          validateResponse(res);
-          return res.json();
+          validateResponse(res)
+          return res.json()
         })
         .then(function (data) {
           if (data) {
             if (appointmentDetail.payment_medium === KHALTI) {
-              intializKhaltiWeb(data.transaction);
+              intializKhaltiWeb(data.transaction)
             } else {
-              setBookingSuccess(true);
+              setBookingSuccess(true)
             }
           } else {
-            toast.error(JSON.stringify(data));
+            toast.error(JSON.stringify(data))
           }
-        });
+        })
     } catch (error) {
-      console.error("Error:", error);
-      toast.error(JSON.stringify(error));
+      console.error('Error:', error)
+      toast.error(JSON.stringify(error))
     }
-  };
+  }
   const handleOnChange = (event) => {
-    const formInput = event.target.value;
+    const formInput = event.target.value
     let defaultValue = {
       ...appointmentDetail,
-      [event.target.name]: formInput,
-    };
-    if (
-      defaultAppointment.service === "labservices" &&
-      event.target.name === "start_date"
-    ) {
+      [event.target.name]: formInput
+    }
+    if (defaultAppointment.service === 'labservices' && event.target.name === 'start_date') {
       defaultValue = {
         ...defaultValue,
-        end_date: formInput,
-      };
+        end_date: formInput
+      }
     }
-    setAppointmentDetail(defaultValue);
-  };
+    setAppointmentDetail(defaultValue)
+  }
 
   useEffect(() => {
     if (page) {
-      const bookingDetail = localStorage.getItem("book-detail");
+      const bookingDetail = localStorage.getItem('book-detail')
       setDefaultAppointment({
         title: page,
-        service: page.toLowerCase().replace(/\s/g, ""),
-        detail: JSON.parse(bookingDetail),
-      });
+        service: page.toLowerCase().replace(/\s/g, ''),
+        detail: JSON.parse(bookingDetail)
+      })
     }
     if (params) {
       setAppointmentDetail({
         ...appointmentDetail,
-        appointment_for: params.uuid,
-      });
+        appointment_for: params.uuid
+      })
     }
-  }, []);
+  }, [])
 
   const getMessageForServiceType = () => {
     let defaultMessage = `${defaultAppointment?.detail?.user?.first_name}
     ${defaultAppointment?.detail?.user?.last_name}
-    ${defaultAppointment?.detail?.speciality}`;
-    if (defaultAppointment.service === "labservices") {
-      defaultMessage = defaultAppointment?.detail?.name;
+    ${defaultAppointment?.detail?.speciality}`
+    if (defaultAppointment.service === 'labservices') {
+      defaultMessage = defaultAppointment?.detail?.name
     }
-    return defaultMessage;
-  };
+    return defaultMessage
+  }
 
   return (
     <LocationView>
@@ -206,9 +194,7 @@ const AppointmentPage = ({ page }) => {
               </ol>
             </nav>
           </h1>
-          <p className="card-text">
-            Fill the information to confirm your booking for selected services.
-          </p>
+          <p className="card-text">Fill the information to confirm your booking for selected services.</p>
           <form onSubmit={onSubmitHandler}>
             <div className="mb-3">
               <label className="form-label">Full Name</label>
@@ -265,21 +251,19 @@ const AppointmentPage = ({ page }) => {
               </select>
             </div>
             <div className="row mb-3">
-              <div
-                className={`${defaultAppointment.service === "caregiving" ? "col-6 p-0" : "col-12 p-0"}`}
-              >
+              <div className={`${defaultAppointment.service === 'caregiving' ? 'col-6 p-0' : 'col-12 p-0'}`}>
                 <label className="form-label">Appointment Start Date</label>
                 <input
                   type="date"
                   name="start_date"
                   className="form-control form-control-lg"
-                  min={new Date().toISOString().split("T")[0]}
+                  min={new Date().toISOString().split('T')[0]}
                   id="date"
                   onChange={handleOnChange}
                   placeholder="Enter Your Date"
                 />
               </div>
-              {defaultAppointment.service === "caregiving" ? (
+              {defaultAppointment.service === 'caregiving' ? (
                 <div className="col-6">
                   <label className="form-label">Appointment End Date</label>
                   <input
@@ -294,18 +278,18 @@ const AppointmentPage = ({ page }) => {
                   />
                 </div>
               ) : (
-                ""
+                ''
               )}
             </div>
             <label className="form-label">Select Payment Method: </label>
             <div className="mb-3 d-flex">
               <div
-                className={`form-check ml-5 ${appointmentDetail.payment_medium === KHALTI && "active"}`}
+                className={`form-check ml-5 ${appointmentDetail.payment_medium === KHALTI && 'active'}`}
                 role="presentation"
                 onClick={() =>
                   setAppointmentDetail({
                     ...appointmentDetail,
-                    payment_medium: KHALTI,
+                    payment_medium: KHALTI
                   })
                 }
               >
@@ -314,12 +298,12 @@ const AppointmentPage = ({ page }) => {
                 <span className="ml-5">Pay with Khalti</span>
               </div>
               <div
-                className={`form-check ml-5 ${appointmentDetail.payment_medium === "Cash" && "active"}`}
+                className={`form-check ml-5 ${appointmentDetail.payment_medium === 'Cash' && 'active'}`}
                 role="presentation"
                 onClick={() =>
                   setAppointmentDetail({
                     ...appointmentDetail,
-                    payment_medium: "Cash",
+                    payment_medium: 'Cash'
                   })
                 }
               >
@@ -334,7 +318,7 @@ const AppointmentPage = ({ page }) => {
         </div>
       </div>
     </LocationView>
-  );
-};
+  )
+}
 
-export default AppointmentPage;
+export default AppointmentPage

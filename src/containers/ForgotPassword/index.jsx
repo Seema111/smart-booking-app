@@ -1,96 +1,93 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
+import { useState } from 'react'
 // import { registerUser } from "../../services/http-request";
-import { useNavigate } from "react-router-dom";
-import LoginCardView from "../../components/LoginCardView";
-import {
-  forgotPasswordEmail,
-  forgotPasswordReset,
-} from "../../services/http-request";
-import { toast } from "react-toastify";
-import { validateResponse } from "../../utils/validateResponse";
+import { useNavigate } from 'react-router-dom'
+import LoginCardView from '../../components/LoginCardView'
+import { forgotPasswordEmail, forgotPasswordReset } from '../../services/http-request'
+import { toast } from 'react-toastify'
+import { validateResponse } from '../../utils/validateResponse'
 
 const INITIAL_VALUE = {
-  email: "",
-};
+  email: ''
+}
 
 const INITIAL_RESET_PASSWORD = {
-  otp: "",
-  new_password: "",
-  confirm_password: "",
-};
+  otp: '',
+  new_password: '',
+  confirm_password: ''
+}
 
 const ForgotPasswordPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [loading, setLoading] = useState({
     otpSent: false,
-    resetPassword: false,
-  });
-  const [formValue, setFormValue] = useState(INITIAL_VALUE);
-  const [resetFormValue, setResetForm] = useState(INITIAL_RESET_PASSWORD);
-  const [sentOTP, setOTPSent] = useState(false);
+    resetPassword: false
+  })
+  const [formValue, setFormValue] = useState(INITIAL_VALUE)
+  const [resetFormValue, setResetForm] = useState(INITIAL_RESET_PASSWORD)
+  const [sentOTP, setOTPSent] = useState(false)
 
   const handleOnChange = (event) => {
-    setFormValue({ ...formValue, [event.target.name]: event.target.value });
-  };
+    setFormValue({ ...formValue, [event.target.name]: event.target.value })
+  }
 
   const handleOnChangeReset = (event) => {
     setResetForm({
       ...resetFormValue,
-      [event.target.name]: event.target.value,
-    });
-  };
+      [event.target.name]: event.target.value
+    })
+  }
 
   const onSubmitEmailHandler = async (e) => {
-    e.preventDefault();
-    setLoading({ ...loading, otpSent: true });
+    e.preventDefault()
+    setLoading({ ...loading, otpSent: true })
     try {
       forgotPasswordEmail(formValue)
         .then(function (res) {
-          validateResponse(res);
-          return res.json();
+          validateResponse(res)
+          return res.json()
         })
         .then(function (data) {
           if (data.message) {
-            setLoading({ ...loading, otpSent: false });
-            toast.success(JSON.stringify(data.message));
-            setFormValue(INITIAL_VALUE);
-            setOTPSent(true);
+            setLoading({ ...loading, otpSent: false })
+            toast.success(JSON.stringify(data.message))
+            setFormValue(INITIAL_VALUE)
+            setOTPSent(true)
           } else {
-            toast.error(JSON.stringify(data));
+            toast.error(JSON.stringify(data))
           }
-        });
+        })
     } catch (error) {
-      console.error("Error:", error);
-      toast.error(JSON.stringify(error));
+      console.error('Error:', error)
+      toast.error(JSON.stringify(error))
     }
-  };
+  }
 
   const onSubmitChangePasswordHandler = async (e) => {
-    e.preventDefault();
-    setLoading({ ...loading, resetPassword: true });
+    e.preventDefault()
+    setLoading({ ...loading, resetPassword: true })
     try {
       forgotPasswordReset(resetFormValue)
         .then(function (res) {
-          validateResponse(res);
-          return res.json();
+          validateResponse(res)
+          return res.json()
         })
         .then(function (data) {
           if (data.message) {
-            setLoading({ ...loading, resetPassword: false });
-            toast.success("Your new password is updated. Please login with new credentials.");
-            setResetForm(INITIAL_RESET_PASSWORD);
-            setOTPSent(false);
-            navigate("/login");
+            setLoading({ ...loading, resetPassword: false })
+            toast.success('Your new password is updated. Please login with new credentials.')
+            setResetForm(INITIAL_RESET_PASSWORD)
+            setOTPSent(false)
+            navigate('/login')
           } else {
-            toast.error(JSON.stringify(data));
+            toast.error(JSON.stringify(data))
           }
-        });
+        })
     } catch (error) {
-      console.error("Error:", error);
-      toast.error(JSON.stringify(error));
+      console.error('Error:', error)
+      toast.error(JSON.stringify(error))
     }
-  };
+  }
 
   return (
     <LoginCardView title="Forgot Password" subTitle="">
@@ -138,17 +135,8 @@ const ForgotPasswordPage = () => {
               required
             />
           </div>
-          <button
-            className="btn btn-primary btn-lg w-100 mt-2"
-            type="submit"
-            disabled={loading.resetPassword}
-          >
-            {loading.resetPassword ? (
-              <div className="spinner-border text-light" role="status" />
-            ) : (
-              ""
-            )}{" "}
-            Update Password
+          <button className="btn btn-primary btn-lg w-100 mt-2" type="submit" disabled={loading.resetPassword}>
+            {loading.resetPassword ? <div className="spinner-border text-light" role="status" /> : ''} Update Password
           </button>
         </form>
       ) : (
@@ -165,29 +153,20 @@ const ForgotPasswordPage = () => {
               required
             />
           </div>
-          <button
-            className="btn btn-primary btn-lg w-100 mt-2"
-            type="submit"
-            disabled={loading.otpSent}
-          >
-            {loading.otpSent ? (
-              <div className="spinner-border text-light" role="status" />
-            ) : (
-              ""
-            )}{" "}
-            Send OTP
+          <button className="btn btn-primary btn-lg w-100 mt-2" type="submit" disabled={loading.otpSent}>
+            {loading.otpSent ? <div className="spinner-border text-light" role="status" /> : ''} Send OTP
           </button>
         </form>
       )}
 
       <span className="py-3 dashboard-container__introduction__already_account_text">
         <>
-          {" "}
-          Login with another account! <a href="/login">Login here</a>{" "}
+          {' '}
+          Login with another account! <a href="/login">Login here</a>{' '}
         </>
       </span>
     </LoginCardView>
-  );
-};
+  )
+}
 
-export default ForgotPasswordPage;
+export default ForgotPasswordPage

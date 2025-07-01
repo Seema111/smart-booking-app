@@ -1,43 +1,165 @@
-.dashboard-container {
-  padding: 10rem 3.5rem 2.5rem 3.5rem;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-  &__introduction {
-    font-family: "Cormorant Garamond", sans-serif;
-    padding: 0 8.8%;
+$primary: #005c4b; 
+$secondary: #6c757d;
+$accent: #4caf50;
+$accent-light: #81c784;
+$text-dark: #212529;
+$text-muted: #6c757d;
+$bg-light: #f9f9f9;
+$white: #ffffff;
 
-    h1 {
-      font-size: 3rem;
+body {
+  font-family: 'Poppins', sans-serif;
+  color: $text-dark;
+  background-color: $white;
+}
+
+.dashboard-hero {
+  margin-top: 120px;
+}
+
+.dashboard-title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: $primary;
+}
+
+.dashboard-subtitle {
+  font-size: 1.5rem;
+  color: $secondary;
+  margin-bottom: 1rem;
+}
+
+.btn-cta {
+  background: linear-gradient(90deg, $accent, $accent-light);
+  border: none;
+  color: $white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+}
+
+.services {
+  background-color: $bg-light;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  h3 {
+    color: $secondary;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  h2 {
+    color: $primary;
+    font-weight: 700;
+  }
+}
+
+.service-card {
+  border-radius: 1rem;
+  background: $white;
+  border-bottom: 4px solid $accent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 2rem rgba(0, 123, 255, 0.1);
+  }
+
+  .card-body {
+    padding: 2rem;
+
+    i,
+    img {
+      transition: transform 0.3s ease;
     }
 
-    h2 {
-      font-size: 2rem;
+    &:hover i,
+    &:hover img {
+      transform: scale(1.1);
     }
 
-    h1,
-    h2 {
+    h5 {
       font-weight: 600;
+      color: $primary;
     }
 
     p {
-      font-size: 20px;
-      text-align: justify;
+      font-size: 0.95rem;
+      color: $secondary;
     }
 
-    .btn-lg {
-      width: 50%;
-      font-size: 20px;
-    }
+    a {
+      color: $primary;
 
-    &__already_account_text {
-      font-size: 20px;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
 
-.custom-image {
-  height: 56px;
+.about-us-banner {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-.dashboard-testimonial {
-  padding: 2rem;
+.about-us-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.about-us-banner h1 {
+  position: relative;
+  z-index: 2;
+}
+
+.testimonials {
+  background: $bg-light;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  h1, h2 {
+    color: $primary;
+  }
+
+  .testimonial-card {
+    border: none;
+    background: $white;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    border-radius: 1rem;
+
+    blockquote {
+      font-style: italic;
+      color: $text-muted;
+    }
+
+    figcaption h4 {
+      color: $text-dark;
+      font-weight: 600;
+    }
+  }
 }

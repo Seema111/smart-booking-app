@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import "./style.scss";
+import React from 'react'
+import './style.scss'
 
 function LoaderSpinner({ loading }) {
   return (
@@ -11,7 +11,7 @@ function LoaderSpinner({ loading }) {
         </div>
       )}
     </>
-  );
+  )
 }
 
-export default LoaderSpinner;
+export default LoaderSpinner

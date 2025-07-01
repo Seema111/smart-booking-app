@@ -1,5 +1,5 @@
-import AboutUsImage from "../../assets/images/team5.jpg";
-import "./style.scss";
+import AboutUsImage from '../../assets/images/team5.jpg'
+import './style.scss'
 
 const AboutUsPage = () => {
   return (
@@ -7,7 +7,7 @@ const AboutUsPage = () => {
       <div
         className="col-12 main-about-us"
         style={{
-          backgroundImage: `url(${AboutUsImage})`,
+          backgroundImage: `url(${AboutUsImage})`
         }}
       />
       <div className="col-12 p-5 main-col d-flex justify-content-center">
@@ -15,31 +15,23 @@ const AboutUsPage = () => {
           <div className="col-12 col-xl-11 text-center">
             <h1 className="mb-3 text-center fw-bold">OUR STORY</h1>
             <p className="lead fs-4 text-secondary mb-3">
-              At Prana Home Care Care, our story is rooted in a deep commitment to
-              enriching the lives of our elderly residents. We envisioned a
-              place where compassion meets innovation, where every resident is
-              valued as a cherished member of our extended family.
+              At Prana Home Care Care, our story is rooted in a deep commitment to enriching the lives of our elderly
+              residents. We envisioned a place where compassion meets innovation, where every resident is valued as a
+              cherished member of our extended family.
             </p>
             <p className="fs-5">
-              Founded by a team of passionate individuals with extensive
-              experience in healthcare and eldercare, our journey began with a
-              simple yet powerful vision: to create a haven where seniors can
-              embrace each day with dignity, joy, and a sense of belonging. Our
-              founders, inspired by personal experiences and driven by a desire
-              to make a difference, embarked on a mission to redefine the
-              standards of elderly care.
+              Founded by a team of passionate individuals with extensive experience in healthcare and eldercare, our
+              journey began with a simple yet powerful vision: to create a haven where seniors can embrace each day with
+              dignity, joy, and a sense of belonging. Our founders, inspired by personal experiences and driven by a
+              desire to make a difference, embarked on a mission to redefine the standards of elderly care.
             </p>
             <p className="fs-5 mb-5">
-              With this vision at our core, we set out to establish Prana Home Care
-              Care—a sanctuary designed to provide unparalleled support and
-              comfort to our residents. Guided by principles of empathy,
-              respect, and integrity, we assembled a team of dedicated
-              caregivers who share our unwavering commitment to excellence.
-              Through our holistic approach to care, we strive to not only meet
-              the physical needs of our residents but also nurture their
-              emotional, social, and spiritual wellbeing. From personalized care
-              plans to engaging activities and meaningful connections, we tailor
-              our services to honor the individuality of each resident,
+              With this vision at our core, we set out to establish Prana Home Care Care—a sanctuary designed to provide
+              unparalleled support and comfort to our residents. Guided by principles of empathy, respect, and
+              integrity, we assembled a team of dedicated caregivers who share our unwavering commitment to excellence.
+              Through our holistic approach to care, we strive to not only meet the physical needs of our residents but
+              also nurture their emotional, social, and spiritual wellbeing. From personalized care plans to engaging
+              activities and meaningful connections, we tailor our services to honor the individuality of each resident,
               celebrating their unique life stories and preferences.
             </p>
             <div className="row">
@@ -59,9 +51,7 @@ const AboutUsPage = () => {
                   </div>
                   <div>
                     <h2 className="h4 mb-3">Trusted Services</h2>
-                    <p className="text-secondary mb-5">
-                      Compassionate Care, Tailored for You
-                    </p>
+                    <p className="text-secondary mb-5">Compassionate Care, Tailored for You</p>
                   </div>
                 </div>
               </div>
@@ -82,9 +72,7 @@ const AboutUsPage = () => {
                   </div>
                   <div>
                     <h2 className="h4 mb-3">Hear our story</h2>
-                    <p className="text-secondary mb-5">
-                      Let go hand in hand for the betterment of all.
-                    </p>
+                    <p className="text-secondary mb-5">Let go hand in hand for the betterment of all.</p>
                   </div>
                 </div>
               </div>
@@ -107,9 +95,7 @@ const AboutUsPage = () => {
                   </div>
                   <div>
                     <h2 className="h4 mb-3">Started with Bigger Vision</h2>
-                    <p className="text-secondary mb-0">
-                      Bring back to society with simple methods.
-                    </p>
+                    <p className="text-secondary mb-0">Bring back to society with simple methods.</p>
                   </div>
                 </div>
               </div>
@@ -130,9 +116,7 @@ const AboutUsPage = () => {
                   </div>
                   <div>
                     <h2 className="h4 mb-3">Community and their stories</h2>
-                    <p className="text-secondary mb-0">
-                      Skilled doctors and human resources here in our own care.
-                    </p>
+                    <p className="text-secondary mb-0">Skilled doctors and human resources here in our own care.</p>
                   </div>
                 </div>
               </div>
@@ -141,7 +125,7 @@ const AboutUsPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AboutUsPage;
+export default AboutUsPage

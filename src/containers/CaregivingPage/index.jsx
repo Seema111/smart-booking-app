@@ -1,58 +1,58 @@
-import LabImg3 from "../../assets/images/nurse.jpg";
-import "./style.scss";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { getAllCareGivers } from "../../services/http-request";
-import { caregivingData } from "../../utils/dummyData";
-import LoaderSpinner from "../../components/Loader";
-import { validateResponse } from "../../utils/validateResponse";
+import LabImg3 from '../../assets/images/nurse.jpg'
+import './style.scss'
+import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import { getAllCareGivers } from '../../services/http-request'
+import { caregivingData } from '../../utils/dummyData'
+import LoaderSpinner from '../../components/Loader'
+import { validateResponse } from '../../utils/validateResponse'
 
 const CaregivingPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [caregivers, setCaregivers] = useState({
     loading: true,
-    data: caregivingData, // default dummy shown initially
-  });
+    data: caregivingData // default dummy shown initially
+  })
 
   useEffect(() => {
     getAllCareGivers()
       .then((res) => {
-        validateResponse(res);
-        return res.json();
+        validateResponse(res)
+        return res.json()
       })
       .then((data) => {
         if (data && Array.isArray(data)) {
           setCaregivers({
             loading: false,
-            data,
-          });
+            data
+          })
         } else {
-          toast.error("Received invalid data. Showing sample caregivers.");
+          toast.error('Received invalid data. Showing sample caregivers.')
           setCaregivers({
             loading: false,
-            data: caregivingData,
-          });
+            data: caregivingData
+          })
         }
       })
       .catch((error) => {
-        console.error("API Error:", error);
-        toast.error("Failed to load caregiver list. Showing sample caregivers.");
+        console.error('API Error:', error)
+        toast.error('Failed to load caregiver list. Showing sample caregivers.')
         setCaregivers({
           loading: false,
-          data: caregivingData,
-        });
-      });
-  }, []);
+          data: caregivingData
+        })
+      })
+  }, [])
 
   const redirectToBookAppointment = (event, uuid) => {
-    event.stopPropagation();
-    navigate(`/caregiving/${uuid}/book-appointment`);
-  };
+    event.stopPropagation()
+    navigate(`/caregiving/${uuid}/book-appointment`)
+  }
 
   const getMoreDetails = (uuid) => {
-    navigate(`/caregiving/${uuid}`);
-  };
+    navigate(`/caregiving/${uuid}`)
+  }
 
   return (
     <>
@@ -81,7 +81,10 @@ const CaregivingPage = () => {
                       className="img-fluid rounded rounded mb-4 border border-5"
                       loading="lazy"
                       src={each.user?.profile?.profile_picture || LabImg3}
-                      style={{ height: "200px", width: "200px" }}
+                      style={{
+                        height: '200px',
+                        width: '200px'
+                      }}
                       alt="caregiver profile"
                     />
                     <figcaption>
@@ -90,26 +93,20 @@ const CaregivingPage = () => {
                         data-bsb-star={Math.ceil(Number(each.ratings)) || 5}
                         data-bsb-star-off="0"
                       ></div>
-                      <blockquote className="bsb-blockquote-icon mb-4 blockquote-bio">
-                        {each.bio}
-                      </blockquote>
+                      <blockquote className="bsb-blockquote-icon mb-4 blockquote-bio">{each.bio}</blockquote>
                       <h4 className="mb-2">
                         {each?.user?.first_name} {each?.user?.last_name}
                       </h4>
-                      <h5 className="fs-6 text-secondary mb-1">
-                        {each.speciality}
-                      </h5>
-                      <h5 className="fs-6 text-secondary mb-1">
-                        Experience: {each.experience}
-                      </h5>
+                      <h5 className="fs-6 text-secondary mb-1">{each.speciality}</h5>
+                      <h5 className="fs-6 text-secondary mb-1">Experience: {each.experience}</h5>
                     </figcaption>
                     <div className="col-12 text-center">
                       <button
                         type="button"
                         className="btn btn-lg btn-success mt-3 w-100"
                         onClick={(event) => {
-                          redirectToBookAppointment(event, each.uuid);
-                          localStorage.setItem("book-detail", JSON.stringify(each));
+                          redirectToBookAppointment(event, each.uuid)
+                          localStorage.setItem('book-detail', JSON.stringify(each))
                         }}
                       >
                         <i className="bi bi-person-plus pr-5"></i>
@@ -131,7 +128,7 @@ const CaregivingPage = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CaregivingPage;
+export default CaregivingPage

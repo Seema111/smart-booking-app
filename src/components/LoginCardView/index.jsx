@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import HomeCareLogo from "../../assets/images/home.png";
-import AssetLoginImage from "../../assets/images/login9.jpg";
-import "./style.scss";
+import HomeCareLogo from '../../assets/images/home.png'
+import AssetLoginImage from '../../assets/images/login9.jpg'
+import './style.scss'
 
 const LoginCardView = ({ title, subTitle, children }) => {
   return (
@@ -13,8 +13,8 @@ const LoginCardView = ({ title, subTitle, children }) => {
               className="col-lg-6 d-none d-lg-block login-container__bg-image"
               style={{
                 backgroundImage: `url(${AssetLoginImage})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
               }}
             />
             <div className="col-lg-6 login-container__form d-flex flex-column justify-content-center px-5">
@@ -28,7 +28,7 @@ const LoginCardView = ({ title, subTitle, children }) => {
                 />
               </div>
               <h1 className="card-title">{title}</h1>
-              {subTitle ? <p>{subTitle}</p> : ""}
+              {subTitle ? <p>{subTitle}</p> : ''}
               {children}
               <a href="/" className="text-primary">
                 <i className="bi bi-arrow-left me-1"></i>
@@ -39,7 +39,7 @@ const LoginCardView = ({ title, subTitle, children }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginCardView;
+export default LoginCardView

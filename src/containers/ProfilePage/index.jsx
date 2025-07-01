@@ -1,64 +1,64 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { getUserDetail, updateUserDetail } from "../../services/http-request";
-import { toast } from "react-toastify";
-import { getCookie } from "../../utils/setCookie";
-import MyImage from "../../assets/images/user.jpg";
-import "./style.scss";
-import { validateResponse } from "../../utils/validateResponse";
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { getUserDetail, updateUserDetail } from '../../services/http-request'
+import { toast } from 'react-toastify'
+import { getCookie } from '../../utils/setCookie'
+import MyImage from '../../assets/images/user.jpg'
+import './style.scss'
+import { validateResponse } from '../../utils/validateResponse'
 
 const INITIAL_VALUE = {
-  email: "",
-  first_name: "",
-  last_name: "",
-  gender: "",
+  email: '',
+  first_name: '',
+  last_name: '',
+  gender: '',
   age: 0,
-  phone: "",
-  address: "",
-};
+  phone: '',
+  address: ''
+}
 
 const ProfilePage = () => {
-  const isUserLoggedIn = getCookie("token");
-  const username = getCookie("username");
-  const navigate = useNavigate();
+  const isUserLoggedIn = getCookie('token')
+  const username = getCookie('username')
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!isUserLoggedIn) {
-      navigate("/login");
+      navigate('/login')
     }
-  });
-  const [formValue, setFormValue] = useState(INITIAL_VALUE);
+  })
+  const [formValue, setFormValue] = useState(INITIAL_VALUE)
 
   const handleOnChange = (event) => {
-    setFormValue({ ...formValue, [event.target.name]: event.target.value });
-  };
+    setFormValue({ ...formValue, [event.target.name]: event.target.value })
+  }
 
   const onSubmitHandler = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       updateUserDetail({ username, body: formValue })
         .then(function (res) {
-          validateResponse(res);
-          return res.json();
+          validateResponse(res)
+          return res.json()
         })
         .then(function (data) {
           if (data) {
-            toast.success("Profile is updated successfully!");
+            toast.success('Profile is updated successfully!')
           } else {
-            toast.error(JSON.stringify(data));
+            toast.error(JSON.stringify(data))
           }
-        });
+        })
     } catch (error) {
-      console.error("Error:", error);
-      toast.error(JSON.stringify(error));
+      console.error('Error:', error)
+      toast.error(JSON.stringify(error))
     }
-  };
+  }
   useEffect(() => {
     try {
       getUserDetail(username)
         .then(function (res) {
           validateResponse(res)
-          return res.json();
+          return res.json()
         })
         .then(function (data) {
           if (data) {
@@ -69,19 +69,19 @@ const ProfilePage = () => {
               gender: data.profile.gender,
               age: data.profile.age,
               phone: data.profile.phone,
-              address: data.profile.address,
-            });
-            navigate("/my-account");
+              address: data.profile.address
+            })
+            navigate('/my-account')
           } else {
-            toast.error(JSON.stringify(data));
+            toast.error(JSON.stringify(data))
           }
-        });
+        })
     } catch (error) {
-      console.error("Error:", error);
-      toast.error(JSON.stringify(error));
+      console.error('Error:', error)
+      toast.error(JSON.stringify(error))
     }
-  }, []);
-  console.log(isUserLoggedIn, "user loggedIn");
+  }, [])
+  console.log(isUserLoggedIn, 'user loggedIn')
 
   return (
     <div className="row parent-container d-flex justify-content-center align-items-center">
@@ -196,15 +196,11 @@ const ProfilePage = () => {
               />
             </div>
           </div>
-          <input
-            className="btn btn-primary btn-lg w-100 mt-2"
-            type="submit"
-            value="Update Profile"
-          />
+          <input className="btn btn-primary btn-lg w-100 mt-2" type="submit" value="Update Profile" />
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProfilePage;
+export default ProfilePage

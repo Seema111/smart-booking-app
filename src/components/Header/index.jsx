@@ -1,20 +1,20 @@
-import { useNavigate } from "react-router-dom";
-import HomeCareLogo from "../../assets/images/logo1.png";
-import { deleteCookie, getCookie } from "../../utils/setCookie";
-import { toast } from "react-toastify";
-import "./style.scss";
+import { useNavigate } from 'react-router-dom'
+import HomeCareLogo from '../../assets/images/logo_old_age.png'
+import { deleteCookie, getCookie } from '../../utils/setCookie'
+import { toast } from 'react-toastify'
+import './style.scss'
 
 const Header = () => {
-  const navigate = useNavigate();
-  const isUserLoggedIn = getCookie("token");
-  const username = getCookie("username");
+  const navigate = useNavigate()
+  const isUserLoggedIn = getCookie('token')
+  const username = getCookie('username')
   const logout = () => {
-    deleteCookie("token");
-    deleteCookie("username");
-    localStorage.removeItem("book-detail");
-    toast.success("Logged out successfully!");
-    navigate("/login");
-  };
+    deleteCookie('token')
+    deleteCookie('username')
+    localStorage.removeItem('book-detail')
+    toast.success('Logged out successfully!')
+    navigate('/login')
+  }
   return (
     <>
       <div>
@@ -42,10 +42,7 @@ const Header = () => {
               <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="/">
@@ -85,16 +82,15 @@ const Header = () => {
                 </li>
                 {isUserLoggedIn ? (
                   <li className="nav-item dropdown">
-                    <a
+                    <div
                       className="nav-link dropdown-toggle"
-                      href="#"
                       role="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
                       <i className="bi bi-person-lock"></i>
-                      <span className="p-2">{username ?? "Account"}</span>
-                    </a>
+                      <span className="p-2">{username ?? 'Account'}</span>
+                    </div>
                     <ul className="dropdown-menu">
                       <li>
                         <a className="dropdown-item" href="/my-account">
@@ -124,10 +120,10 @@ const Header = () => {
                         <hr className="dropdown-divider" />
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#" onClick={logout}>
+                        <div className="dropdown-item" href="#" onClick={logout} role="presentation">
                           <i className="bi bi-box-arrow-right"></i>
                           <span className="pl-5">Logout</span>
-                        </a>
+                        </div>
                       </li>
                     </ul>
                   </li>
@@ -145,7 +141,7 @@ const Header = () => {
         </nav>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

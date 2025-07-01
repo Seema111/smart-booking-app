@@ -2,7 +2,6 @@
   font-family: "Maven Pro", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  background-color: #D0F0C0;
 }
 
 .container-fluid {
@@ -46,18 +45,15 @@
   padding: 2rem !important;
 }
 
-/* Scrollbar Track */
 ::-webkit-scrollbar {
-  width: 10px; /* width of the scrollbar */
+  width: 6px;
 }
 
-/* Scrollbar Thumb */
 ::-webkit-scrollbar-thumb {
-  background-color: #737CA1; /* color of the thumb */
-  border-radius: 5px; /* roundness of the thumb */
+  background-color: #737CA1;
+  border-radius: 5px;
 }
 
-/* Scrollbar Track */
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* color of the track */
+  background-color: #f1f1f1;
 }
