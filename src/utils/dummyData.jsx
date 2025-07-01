@@ -1,4 +1,7 @@
 import MealSvg from '../assets/images/meal.svg'
+import TestimonialImg1 from '../assets/images/face1.jpg';
+import TestimonialImg2 from '../assets/images/face2.jpg';
+import TestimonialImg3 from '../assets/images/face3.jpg';
 
 export const caregivingData = [
   {
@@ -25,7 +28,7 @@ export const caregivingData = [
   },
   {
     uuid: 'a33a46c6-8f91-4666-87d9-7789a7cc185a',
-    speciality: 'Nepal Government Registered Nurse',
+    speciality: 'Nepal Registered Nurse',
     languages: 'Nepali, English',
     ratings: 4.0,
     experience: '1 Year',
@@ -164,18 +167,18 @@ export const testimonialsData = [
     text: `I can't express enough gratitude for the caregiving services provided by Prana Home Care...`,
     stars: 5,
     name: 'Luna John',
-    img: './assets/img/testimonial-img-1.jpg'
+    img: TestimonialImg1
   },
   {
     text: `I recently used Prana Home Care lab services for my medical testing needs and couldn't be more impressed...`,
     stars: 4,
     name: 'Kedar Bahadur',
-    img: './assets/img/testimonial-img-2.jpg'
+    img: TestimonialImg2
   },
   {
     text: `Choosing Prana Home Care was the best decision we made for our family. Their team of caregivers provided exceptional support...`,
     stars: 3,
     name: 'Ram Shrestha',
-    img: './assets/img/testimonial-img-3.jpg'
+    img: TestimonialImg3
   },
 ]

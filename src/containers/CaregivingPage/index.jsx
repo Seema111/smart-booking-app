@@ -1,18 +1,53 @@
-import LabImg3 from '../../assets/images/nurse.jpg'
-import './style.scss'
-import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import MedicalStaffImage from '../../assets/images/medical-staff.png'
+
+import LabImg3 from '../../assets/images/nurse.jpg'
 import { getAllCareGivers } from '../../services/http-request'
 import { caregivingData } from '../../utils/dummyData'
 import LoaderSpinner from '../../components/Loader'
 import { validateResponse } from '../../utils/validateResponse'
+import './style.scss'
+
+const FadeInOnScroll = ({ children, delay = 0 }) => {
+  const controls = useAnimation()
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2
+  })
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible')
+    }
+  }, [inView, controls])
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.6, delay }
+        }
+      }}
+    >
+      {children}
+    </motion.div>
+  )
+}
 
 const CaregivingPage = () => {
   const navigate = useNavigate()
   const [caregivers, setCaregivers] = useState({
     loading: true,
-    data: caregivingData // default dummy shown initially
+    data: caregivingData
   })
 
   useEffect(() => {
@@ -23,25 +58,13 @@ const CaregivingPage = () => {
       })
       .then((data) => {
         if (data && Array.isArray(data)) {
-          setCaregivers({
-            loading: false,
-            data
-          })
+          setCaregivers({ loading: false, data })
         } else {
-          toast.error('Received invalid data. Showing sample caregivers.')
-          setCaregivers({
-            loading: false,
-            data: caregivingData
-          })
+          setCaregivers({ loading: false, data: caregivingData })
         }
       })
-      .catch((error) => {
-        console.error('API Error:', error)
-        toast.error('Failed to load caregiver list. Showing sample caregivers.')
-        setCaregivers({
-          loading: false,
-          data: caregivingData
-        })
+      .catch(() => {
+        setCaregivers({ loading: false, data: caregivingData })
       })
   }, [])
 
@@ -57,72 +80,86 @@ const CaregivingPage = () => {
   return (
     <>
       <LoaderSpinner loading={caregivers.loading} />
+      <div>
+        <motion.div
+          className="about-us-hero col-12"
+          style={{
+            backgroundImage: `url(${MedicalStaffImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: '70vh'
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        />
+      </div>
       <div className="container parent-container">
-        <div className="row justify-content-md-center">
-          <div className="col-12">
-            <h1 className="text-center fw-bold text-uppercase d-flex justify-content-center">
-              <span className="pr-5">Caregivers</span>
-            </h1>
-            <p className="display-5 mb-4 mb-md-5 text-center">
+        <div className="row justify-content-center mb-5">
+          <div className="col-12 text-center">
+            <h1 className="text-uppercase fw-bold">Caregivers</h1>
+            <p className="lead text-muted">
               Our Caregivers play an indispensable role in enriching the lives of those we serve.
             </p>
-            <hr className="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle" />
+            <hr className="w-50 mx-auto border-dark-subtle" />
           </div>
         </div>
-      </div>
-      <div className="container overflow-hidden">
-        <div className="row gy-4 gy-md-0 gx-xxl-5 mb-5">
-          {caregivers.data.map((each) => (
-            <div className="col-12 col-md-4" key={each.uuid}>
-              <div className="card border-0 border-bottom border-primary shadow-sm text-cursor mb-5">
-                <div className="card-body pt-5 px-5" title="Learn more">
-                  <figure>
+
+        <div className="row gy-5">
+          {caregivers.data.map((each, index) => (
+            <div className="col-12 col-md-6 col-xl-4" key={each.uuid}>
+              <FadeInOnScroll delay={index * 0.2}>
+                <div className="card caregiver-card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                  <div className="card-body p-4 d-flex flex-column align-items-center text-center">
                     <img
-                      className="img-fluid rounded rounded mb-4 border border-5"
-                      loading="lazy"
+                      className="rounded-circle mb-3 border border-3 border-light shadow"
                       src={each.user?.profile?.profile_picture || LabImg3}
-                      style={{
-                        height: '200px',
-                        width: '200px'
-                      }}
-                      alt="caregiver profile"
+                      alt="caregiver"
+                      style={{ width: '120px', height: '120px', objectFit: 'cover' }}
                     />
-                    <figcaption>
-                      <div
-                        className="bsb-ratings text-warning mb-3"
-                        data-bsb-star={Math.ceil(Number(each.ratings)) || 5}
-                        data-bsb-star-off="0"
-                      ></div>
-                      <blockquote className="bsb-blockquote-icon mb-4 blockquote-bio">{each.bio}</blockquote>
-                      <h4 className="mb-2">
-                        {each?.user?.first_name} {each?.user?.last_name}
-                      </h4>
-                      <h5 className="fs-6 text-secondary mb-1">{each.speciality}</h5>
-                      <h5 className="fs-6 text-secondary mb-1">Experience: {each.experience}</h5>
-                    </figcaption>
-                    <div className="col-12 text-center">
+                    <h4 className="fw-bold mb-1">
+                      {each.user?.first_name} {each.user?.last_name}
+                    </h4>
+                    <p className="text-muted mb-2">{each.speciality}</p>
+                    <p className="small text-muted mb-2">Experience: {each.experience}</p>
+
+                    <div className="mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <i
+                          key={i}
+                          className={`bi ${
+                            i < Math.ceil(each.ratings || 5) ? 'bi-star-fill text-warning' : 'bi-star text-muted'
+                          } me-1`}
+                        />
+                      ))}
+                    </div>
+
+                    <blockquote className="fst-italic small text-secondary mb-4 px-2 text-truncate-line">
+                      {each.bio}
+                    </blockquote>
+
+                    <div className="d-flex flex-column gap-2 w-100 mt-auto">
                       <button
                         type="button"
-                        className="btn btn-lg btn-success mt-3 w-100"
+                        className="btn btn-success w-100"
                         onClick={(event) => {
                           redirectToBookAppointment(event, each.uuid)
                           localStorage.setItem('book-detail', JSON.stringify(each))
                         }}
                       >
-                        <i className="bi bi-person-plus pr-5"></i>
-                        Book Appointment
+                        <i className="bi bi-calendar-plus me-2"></i>Book Appointment
                       </button>
                       <button
                         type="button"
-                        className="btn btn-lg btn btn-outline-info mt-3"
+                        className="btn btn-outline-primary w-100"
                         onClick={() => getMoreDetails(each.uuid)}
                       >
-                        Learn more..
+                        Learn More
                       </button>
                     </div>
-                  </figure>
+                  </div>
                 </div>
-              </div>
+              </FadeInOnScroll>
             </div>
           ))}
         </div>

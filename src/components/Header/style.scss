@@ -1,41 +1,26 @@
-.navbar {
-  padding: 0;
-
-  .homecare-name {
-    font-size: 25px;
-    font-weight: 600;
-    color: #00563B;
-    font-family: "Nothing You Could Do", cursive;
-  }
-
-  .main-header-nav {
-    background: #FAF9F6;
-    .main-logo {
-      padding-left: 5rem;
-    }
-  }
-
-  .nav-item {
-    font-size: 18px;
-    font-weight: 600;
-    padding: 0 2rem;
-
-    .nav-link {
-      color: #1B4D3E;
-    }
-  }
+.transition {
+  transition: all 0.3s ease;
 }
-
-// Medium devices (tablets, less than 992px)
-@media (max-width: 1346px) {
-  .nav-item,
-  .homecare-name {
-    font-size: 15px !important;
-  }
+.link-hover:hover {
+  background-color: rgba(255 255 255 / 0.2);
+  box-shadow: 0 0 10px rgba(255 255 255 / 0.3);
+  color: #e0ffe0 !important;
 }
-
-@media (max-width: 1080px) {
-  .main-logo {
-    padding-left: 2rem !important;
-  }
+.active-link {
+  background-color: #004d40;
+  box-shadow: 0 0 15px #00c853;
+  color: #a5d6a7 !important;
+  font-weight: 700;
+}
+.dropdown-menu > li > a.dropdown-item:hover,
+.dropdown-menu > li > button.dropdown-item:hover {
+  background-color: #e0f2f1;
+  color: #004d40;
+}
+.dropdown-menu > li > a.dropdown-item:focus,
+.dropdown-menu > li > button.dropdown-item:focus {
+  background-color: #b2dfdb;
+  color: #004d40;
+  outline: none;
+  box-shadow: none;
 }

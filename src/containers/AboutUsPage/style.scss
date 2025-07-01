@@ -1,14 +1,24 @@
-.main-about-us {
-  height: 50vh;
-  width: 100%;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.about-us-hero {
+  border-bottom: 5px solid rgba(0, 123, 255, 0.2);
 }
 
-.main-col {
-  .main-row {
-    width: 80%;
+.about-us-page {
+  padding-top: 104px;
+  background-color: #f9fafb;
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .lead {
+    font-weight: 500;
+  }
+
+  .bi {
+    vertical-align: middle;
+  }
+
+  .text-secondary {
+    font-size: 1.05rem;
   }
 }

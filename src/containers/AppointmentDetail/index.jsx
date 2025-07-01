@@ -117,7 +117,7 @@ const APPOINTMENT_DETAIL = [
     is_paid: true,
     caregiver: {
       uuid: 'e4a8a549-9c7a-4b0c-ac8a-43461efffe8d',
-      speciality: 'Nepal Government Registered Nurse',
+      speciality: 'Nepal Registered Nurse',
       languages: 'Nepali, English',
       ratings: 4,
       experience: '1 Year',
@@ -148,7 +148,7 @@ const APPOINTMENT_DETAIL = [
     is_paid: true,
     caregiver: {
       uuid: 'e4a8a549-9c7a-4b0c-ac8a-43461efffe8d',
-      speciality: 'Nepal Government Registered Nurse',
+      speciality: 'Nepal Registered Nurse',
       languages: 'Nepali, English',
       ratings: 4,
       experience: '1 Year',

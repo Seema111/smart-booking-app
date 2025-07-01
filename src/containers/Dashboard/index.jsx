@@ -1,27 +1,64 @@
+import { motion } from 'framer-motion'
 import HomeCareDashboardImg from '../../assets/images/old_ladies.jpg'
-
 import DashboardImage from '../../assets/images/option1.jpg'
 import { servicesDummyObject, testimonialsData } from '../../utils/dummyData'
+import DashboardMainImage from '../../assets/images/doctor_background.png'
 import { getCookie } from '../../utils/setCookie'
 import './style.scss'
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (custom = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: custom * 0.15, duration: 0.6, ease: 'easeOut' }
+  })
+}
 
 const Dashboard = () => {
   const storedToken = getCookie('token')
 
   return (
     <>
+      <section>
+        <motion.div
+          className="about-us-hero col-12"
+          style={{
+            backgroundImage: `url(${DashboardMainImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: '100vh'
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        />
+      </section>
       <section className="dashboard-hero py-5">
         <div className="container">
           <div className="row align-items-center gx-5">
-            <div className="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
+            <motion.div
+              className="col-md-6 mb-4 mb-md-0"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
               <img
                 src={HomeCareDashboardImg}
                 alt="Happy elders at Prana Home Care"
                 className="img-fluid rounded-4 shadow-lg hero-img"
                 loading="lazy"
               />
-            </div>
-            <div className="col-md-6 text-md-start text-center" data-aos="fade-left">
+            </motion.div>
+            <motion.div
+              className="col-md-6 text-md-start text-center"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={1}
+              variants={fadeInUp}
+            >
               <h1 className="dashboard-title">Prana Home Care</h1>
               <h2 className="dashboard-subtitle">Compassion Meets Comfort</h2>
               <p className="lead">
@@ -43,23 +80,37 @@ const Dashboard = () => {
                   </a>
                 )}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       <section className="services py-5 bg-light">
         <div className="container">
-          <div className="row justify-content-md-center">
+          <motion.div
+            className="row justify-content-md-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             <div className="col-12 col-md-10 col-lg-8 col-xl-7 text-center">
               <h3 className="fs-4 mb-2 text-secondary text-uppercase">Our Services</h3>
               <h2 className="display-5 mb-4 fw-bold text-dark">Serving with Heart, Caring with Purpose</h2>
               <hr className="w-25 mx-auto mb-5 border-2 border-primary" />
             </div>
-          </div>
+          </motion.div>
+
           <div className="row gy-4 gy-xl-0">
             {servicesDummyObject.map((service, index) => (
-              <div key={index} className="col-12 col-sm-6 col-xl-3" data-aos="fade-up" data-aos-delay={index * 100}>
+              <motion.div
+                key={index}
+                className="col-12 col-sm-6 col-xl-3"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={index}
+                variants={fadeInUp}
+              >
                 <div className="card border-0 shadow-lg service-card h-100 transition-hover">
                   <div className="card-body text-center p-4 p-xxl-5">
                     {service.image ? (
@@ -74,7 +125,7 @@ const Dashboard = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -85,22 +136,43 @@ const Dashboard = () => {
         style={{ backgroundImage: `url(${DashboardImage})` }}
         aria-label="About Prana Home Care"
       >
-        <h1 className="display-4">About Prana Home Care</h1>
+        <motion.h1
+          className="display-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          About Prana Home Care
+        </motion.h1>
       </section>
 
       <section className="testimonials py-5 bg-light">
         <div className="container">
-          <div className="row justify-content-center mb-4">
+          <motion.div
+            className="row justify-content-center mb-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             <div className="col-12 text-center">
               <h3 className="fs-4 mb-2 text-secondary text-uppercase">Testimonials</h3>
               <h2 className="display-5 mb-4 fw-bold text-dark">What Our Clients Are Saying</h2>
               <hr className="w-25 mx-auto mb-5 border-2 border-primary" />
             </div>
-          </div>
+          </motion.div>
 
           <div className="row gy-4">
             {testimonialsData.map(({ text, stars, name, img }, idx) => (
-              <div className="col-12 col-md-6 col-xl-4" key={idx} data-aos="fade-up" data-aos-delay={idx * 100}>
+              <motion.div
+                className="col-12 col-md-6 col-xl-4"
+                key={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={idx}
+                variants={fadeInUp}
+              >
                 <div className="card shadow-sm h-100 border-0 rounded-4">
                   <div className="card-body p-4 d-flex flex-column justify-content-between">
                     <div>
@@ -109,7 +181,7 @@ const Dashboard = () => {
                           <i
                             key={i}
                             className={`bi ${i < stars ? 'bi-star-fill text-warning' : 'bi-star text-muted'} me-1`}
-                          ></i>
+                          />
                         ))}
                       </div>
                       <blockquote className="blockquote mb-4 text-secondary fw-normal fst-italic">“{text}”</blockquote>
@@ -126,7 +198,7 @@ const Dashboard = () => {
                     </figure>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

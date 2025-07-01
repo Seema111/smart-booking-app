@@ -1,13 +1,28 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link, NavLink } from 'react-router-dom'
 import HomeCareLogo from '../../assets/images/logo_old_age.png'
 import { deleteCookie, getCookie } from '../../utils/setCookie'
 import { toast } from 'react-toastify'
 import './style.scss'
 
+const navItems = [
+  { to: '/', label: 'Home', icon: 'bi-house-door' },
+  { to: '/caregiving', label: 'Caregiving', icon: 'bi-person-wheelchair' },
+  { to: '/lab-services', label: 'Lab Services', icon: 'bi-hospital' },
+  { to: '/about-us', label: 'About Us', icon: 'bi-bookmark-heart' },
+  { to: '/help', label: 'Help', icon: 'bi-patch-question' },
+]
+
+const accountItems = [
+  { to: '/my-account', label: 'My Account', icon: 'bi-person-lines-fill' },
+  { to: '/my-appointments', label: 'My Appointments', icon: 'bi-journal-medical' },
+  { to: '/register', label: 'Register New User', icon: 'bi-person-plus' },
+]
+
 const Header = () => {
   const navigate = useNavigate()
-  const isUserLoggedIn = getCookie('token')
+  const isUserLoggedIn = Boolean(getCookie('token'))
   const username = getCookie('username')
+
   const logout = () => {
     deleteCookie('token')
     deleteCookie('username')
@@ -15,132 +30,130 @@ const Header = () => {
     toast.success('Logged out successfully!')
     navigate('/login')
   }
-  return (
-    <>
-      <div>
-        <nav className="navbar navbar-expand-lg fixed-top bg-body-tertiary">
-          <div className="container-fluid main-header-nav">
-            <div className="navbar-brand main-logo" href="#">
-              <img
-                src={HomeCareLogo}
-                alt="Prana Home Care"
-                width="88"
-                height="88"
-                className="d-inline-block align-text-top"
-              />
-            </div>
-            <div className="navbar-brand homecare-name">Prana Home Care</div>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav ms-auto">
-                <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">
-                    <i className="bi bi-house-door"></i>
-                    <span className="p-2">Home</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/caregiving">
-                    <i className="bi bi-person-wheelchair"></i>
-                    <span className="p-2">Caregiving</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/lab-services">
-                    <i className="bi bi-hospital"></i>
-                    <span className="p-2">Lab Services</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/about-us">
-                    <i className="bi bi-bookmark-heart"></i>
-                    <span className="p-2">About Us</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/chat">
-                    <i className="bi bi-chat-dots"></i>
-                    <span className="p-2">Chat</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/help">
-                    <i className="bi bi-patch-question"></i>
-                    <span className="p-2">Help</span>
-                  </a>
-                </li>
-                {isUserLoggedIn ? (
-                  <li className="nav-item dropdown">
-                    <div
-                      className="nav-link dropdown-toggle"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
+  return (
+    <nav
+      className="navbar navbar-expand-lg fixed-top"
+      style={{
+        background:
+          'linear-gradient(90deg, #2e8b57 0%, #3cb371 50%, #66cdaa 100%)',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+        fontWeight: '500',
+      }}
+    >
+      <div className="container-fluid main-header-nav">
+        <Link
+          to="/"
+          className="navbar-brand d-flex align-items-center text-white"
+          style={{ gap: '0.75rem' }}
+        >
+          <img
+            src={HomeCareLogo}
+            alt="Prana Home Care Logo"
+            width="70"
+            height="70"
+            className="rounded-circle shadow"
+            style={{ objectFit: 'cover' }}
+          />
+          <span
+            className="homecare-name fw-bold fs-4"
+            style={{ letterSpacing: '0.1rem', textShadow: '1px 1px 2px #00000066' }}
+          >
+            Prana Home Care
+          </span>
+        </Link>
+
+        <button
+          className="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          style={{ filter: 'invert(1)' }}
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav ms-auto align-items-lg-center gap-3">
+            {navItems.map(({ to, label, icon }) => (
+              <li key={to} className="nav-item">
+                <NavLink
+                  to={to}
+                  end
+                  className={({ isActive }) =>
+                    `nav-link d-flex align-items-center text-white px-3 rounded-pill transition ${
+                      isActive ? 'active-link' : 'link-hover'
+                    }`
+                  }
+                >
+                  <i className={`bi ${icon} me-2 fs-5`}></i>
+                  <span className="fs-6">{label}</span>
+                </NavLink>
+              </li>
+            ))}
+
+            {isUserLoggedIn ? (
+              <li className="nav-item dropdown">
+                <button
+                  className="nav-link dropdown-toggle d-flex align-items-center btn btn-link text-white px-3 rounded-pill"
+                  id="accountDropdown"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  type="button"
+                  style={{ userSelect: 'none' }}
+                >
+                  <i className="bi bi-person-lock fs-5 me-2"></i>
+                  <span className="fs-6">{username || 'Account'}</span>
+                </button>
+                <ul
+                  className="dropdown-menu dropdown-menu-end shadow-lg"
+                  aria-labelledby="accountDropdown"
+                  style={{ minWidth: '200px', borderRadius: '0.6rem' }}
+                >
+                  {accountItems.map(({ to, label, icon }) => (
+                    <li key={to}>
+                      <Link
+                        to={to}
+                        className="dropdown-item d-flex align-items-center"
+                      >
+                        <i className={`bi ${icon} me-3 fs-5 text-success`}></i>
+                        <span>{label}</span>
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <button
+                      onClick={logout}
+                      className="dropdown-item d-flex align-items-center text-danger fw-semibold"
+                      type="button"
                     >
-                      <i className="bi bi-person-lock"></i>
-                      <span className="p-2">{username ?? 'Account'}</span>
-                    </div>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a className="dropdown-item" href="/my-account">
-                          <i className="bi bi-person-lines-fill"></i>
-                          <span className="pl-5">My Account</span>
-                        </a>
-                      </li>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="/my-appointments">
-                          <i className="bi bi-journal-medical"></i>
-                          <span className="pl-5">My Appointments</span>
-                        </a>
-                      </li>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="/register">
-                          <i className="bi bi-person-plus"></i>
-                          <span className="pl-5">Register New User</span>
-                        </a>
-                      </li>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
-                      <li>
-                        <div className="dropdown-item" href="#" onClick={logout} role="presentation">
-                          <i className="bi bi-box-arrow-right"></i>
-                          <span className="pl-5">Logout</span>
-                        </div>
-                      </li>
-                    </ul>
+                      <i className="bi bi-box-arrow-right me-3 fs-5"></i>
+                      Logout
+                    </button>
                   </li>
-                ) : (
-                  <li className="nav-item">
-                    <a className="nav-link" href="/login">
-                      <i className="bi bi-person-lock"></i>
-                      <span className="p-2">Login</span>
-                    </a>
-                  </li>
-                )}
-              </ul>
-            </div>
-          </div>
-        </nav>
+                </ul>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <NavLink
+                  to="/login"
+                  className="nav-link d-flex align-items-center text-white px-3 rounded-pill link-hover"
+                >
+                  <i className="bi bi-person-lock fs-5 me-2"></i>
+                  <span className="fs-6">Login</span>
+                </NavLink>
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
-    </>
+    </nav>
   )
 }
 

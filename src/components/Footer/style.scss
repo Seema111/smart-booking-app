@@ -1,0 +1,16 @@
+  .footer-link:hover {
+            color: #b2dfdb !important;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+          }
+          .footer-link:focus {
+            outline: none;
+            text-decoration: underline;
+            color: #80cbc4 !important;
+          }
+          a.footer-link {
+            cursor: pointer;
+          }
+          .shadow {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          }
