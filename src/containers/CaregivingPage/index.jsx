@@ -12,31 +12,37 @@ const CaregivingPage = () => {
   const navigate = useNavigate();
   const [caregivers, setCaregivers] = useState({
     loading: true,
-    data: caregivingData,
+    data: caregivingData, // default dummy shown initially
   });
 
   useEffect(() => {
-    try {
-      getAllCareGivers()
-        .then((res) => {
-          validateResponse(res);
-          return res.json();
-        })
-        .then((data) => {
-          if (data) {
-            console.log(data);
-            setCaregivers({
-              loading: false,
-              data,
-            });
-          } else {
-            toast.error(JSON.stringify(data));
-          }
+    getAllCareGivers()
+      .then((res) => {
+        validateResponse(res);
+        return res.json();
+      })
+      .then((data) => {
+        if (data && Array.isArray(data)) {
+          setCaregivers({
+            loading: false,
+            data,
+          });
+        } else {
+          toast.error("Received invalid data. Showing sample caregivers.");
+          setCaregivers({
+            loading: false,
+            data: caregivingData,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("API Error:", error);
+        toast.error("Failed to load caregiver list. Showing sample caregivers.");
+        setCaregivers({
+          loading: false,
+          data: caregivingData,
         });
-    } catch (error) {
-      console.error("Error:", error);
-      toast.error(JSON.stringify(error));
-    }
+      });
   }, []);
 
   const redirectToBookAppointment = (event, uuid) => {
@@ -58,9 +64,7 @@ const CaregivingPage = () => {
               <span className="pr-5">Caregivers</span>
             </h1>
             <p className="display-5 mb-4 mb-md-5 text-center">
-              {" "}
-              Our Caregivers play an indispensable role in enriching the lives
-              of those we serve.
+              Our Caregivers play an indispensable role in enriching the lives of those we serve.
             </p>
             <hr className="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle" />
           </div>
@@ -73,23 +77,13 @@ const CaregivingPage = () => {
               <div className="card border-0 border-bottom border-primary shadow-sm text-cursor mb-5">
                 <div className="card-body pt-5 px-5" title="Learn more">
                   <figure>
-                    {each.user.profile.profile_picture ? (
-                      <img
-                        className="img-fluid rounded rounded mb-4 border border-5"
-                        loading="lazy"
-                        src={each.user.profile.profile_picture}
-                        style={{ height: "200px", width: "200px" }}
-                        alt=""
-                      />
-                    ) : (
-                      <img
-                        className="img-fluid rounded rounded mb-4 border border-5"
-                        loading="lazy"
-                        src={LabImg3}
-                        alt=""
-                      />
-                    )}
-
+                    <img
+                      className="img-fluid rounded rounded mb-4 border border-5"
+                      loading="lazy"
+                      src={each.user?.profile?.profile_picture || LabImg3}
+                      style={{ height: "200px", width: "200px" }}
+                      alt="caregiver profile"
+                    />
                     <figcaption>
                       <div
                         className="bsb-ratings text-warning mb-3"
@@ -115,10 +109,7 @@ const CaregivingPage = () => {
                         className="btn btn-lg btn-success mt-3 w-100"
                         onClick={(event) => {
                           redirectToBookAppointment(event, each.uuid);
-                          localStorage.setItem(
-                            "book-detail",
-                            JSON.stringify(each),
-                          );
+                          localStorage.setItem("book-detail", JSON.stringify(each));
                         }}
                       >
                         <i className="bi bi-person-plus pr-5"></i>
